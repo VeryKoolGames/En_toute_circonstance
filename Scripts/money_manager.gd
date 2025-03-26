@@ -12,6 +12,4 @@ func _ready() -> void:
 func _decrease_value() -> void:
 	var value_loss = randi_range(int(res_total_value.value) / 8, int(res_total_value.value) / 9)
 	total_value -= value_loss
-	print(total_value)
-	print(value_loss)
 	value_label.text = "$ " + str(total_value)

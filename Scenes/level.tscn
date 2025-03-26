@@ -1,15 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=17 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://bf85dy7wvxatq" path="res://Scenes/chargin_zone.tscn" id="3_6phgx"]
 [ext_resource type="PackedScene" uid="uid://dvnlk3yoqhkr6" path="res://Scenes/truck.tscn" id="4_0f350"]
+[ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="5_0f350"]
 [ext_resource type="Script" uid="uid://fmvq1awl4bhh" path="res://Scripts/rock_spawner.gd" id="6_8c0lf"]
 [ext_resource type="PackedScene" uid="uid://c4gx5skpixj84" path="res://Scenes/rock.tscn" id="7_754fn"]
+[ext_resource type="Texture2D" uid="uid://45e831gadbji" path="res://Sprites/porte.png" id="7_bvt00"]
+[ext_resource type="Script" uid="uid://by13da2fsnlsd" path="res://Scripts/rotating_turbine.gd" id="8_oqgf2"]
+[ext_resource type="Texture2D" uid="uid://bkuhqgkaa1cdu" path="res://Sprites/Turbine1.png" id="9_qxfql"]
+[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="10_oqgf2"]
+[ext_resource type="Script" uid="uid://rnvrcuq05h03" path="res://Scripts/key.gd" id="11_ha31o"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0f350"]
 a = Vector2(12, -9)
 b = Vector2(-119, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ha31o"]
+size = Vector2(38, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qxfql"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa6b8"]
+size = Vector2(8, 13)
 
 [node name="Level" type="Node2D"]
 
@@ -48,6 +63,9 @@ position = Vector2(-201, -95)
 [node name="CharginZoneOne" parent="." instance=ExtResource("3_6phgx")]
 position = Vector2(124, -22)
 
+[node name="CharginZoneTwo" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(-79, 105)
+
 [node name="PartTwo" type="Node2D" parent="."]
 position = Vector2(-35, -52)
 
@@ -77,3 +95,65 @@ position = Vector2(-4, 47)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PartThree/Ground"]
 shape = SubResource("SegmentShape2D_0f350")
+
+[node name="PartFour" type="Node2D" parent="."]
+position = Vector2(-167, 122)
+
+[node name="RotatingTurbine" type="Node2D" parent="PartFour"]
+z_index = 1
+position = Vector2(0.5, -24)
+script = ExtResource("8_oqgf2")
+
+[node name="Sprite2D" type="Sprite2D" parent="PartFour/RotatingTurbine"]
+texture = ExtResource("9_qxfql")
+
+[node name="Area2D" type="Area2D" parent="PartFour/RotatingTurbine"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/RotatingTurbine/Area2D"]
+shape = SubResource("RectangleShape2D_ha31o")
+
+[node name="PlayerCollision" type="Node" parent="PartFour/RotatingTurbine"]
+script = ExtResource("10_oqgf2")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[node name="Key" type="Node2D" parent="PartFour" node_paths=PackedStringArray("door")]
+position = Vector2(0, -38)
+script = ExtResource("11_ha31o")
+door = NodePath("../Door/Door")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="PartFour/Key"]
+texture = ExtResource("5_0f350")
+
+[node name="Area2D" type="Area2D" parent="PartFour/Key"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/Key/Area2D"]
+shape = SubResource("CircleShape2D_qxfql")
+
+[node name="Door" type="Control" parent="PartFour"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 46.0
+offset_bottom = 7.0
+
+[node name="Door" type="Node2D" parent="PartFour/Door"]
+position = Vector2(23, 0.5)
+
+[node name="DoorSprite" type="Sprite2D" parent="PartFour/Door/Door"]
+process_mode = 3
+position = Vector2(0, 8)
+texture = ExtResource("7_bvt00")
+
+[node name="Area2D" type="Area2D" parent="PartFour/Door/Door"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/Door/Door/Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_pa6b8")
+
+[node name="PartFive" type="Node2D" parent="."]
+position = Vector2(-69, 27)
+
+[connection signal="area_entered" from="PartFour/RotatingTurbine/Area2D" to="PartFour/RotatingTurbine/PlayerCollision" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartFour/Key/Area2D" to="PartFour/Key" method="_on_area_2d_area_entered"]

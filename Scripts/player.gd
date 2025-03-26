@@ -22,10 +22,14 @@ func _process(delta: float) -> void:
 	var image_pos = (world_pos - level_origin).floor()
 
 	var pixel_color = level_image.get_pixelv(image_pos)
-	if is_on_death_color(pixel_color):
-		Events.on_player_died.emit()
-	if should_follow_mouse:
-		global_position = get_global_mouse_position()
+	if is_inside_image(image_pos):
+		if is_on_death_color(pixel_color):
+			Events.on_player_died.emit()
+		if should_follow_mouse:
+			global_position = get_global_mouse_position()
+
+func is_inside_image(pos: Vector2) -> bool:
+	return pos.x >= 0 and pos.y >= 0 and pos.x < level_image.get_width() and pos.y < level_image.get_height()
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("mouse_pressed"):
