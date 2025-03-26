@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dldcwmwe2e68s"]
+
+[ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
+[ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
+
+[node name="Level" type="Node2D"]
+
+[node name="LevelSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_tumq0")
+
+[node name="PartOne" type="Node2D" parent="."]
+
+[node name="Tree" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(-24, -106)
+
+[node name="Tree2" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(-11, -84)
+
+[node name="Tree3" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(12, -104)
+
+[node name="Tree4" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(31, -86)
+
+[node name="Tree5" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(49, -103)
+
+[node name="Tree6" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(71, -77)
+
+[node name="Tree7" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(84, -105)
+
+[node name="Tree8" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(109, -80)

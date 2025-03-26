@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://v30fe1sniv4s"]
+
+[ext_resource type="Script" uid="uid://7rc5duwx4rvx" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="2_6t5aa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 5.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_cvnsp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6t5aa")
+
+[node name="MouseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea"]
+shape = SubResource("CircleShape2D_vgqql")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cvnsp")
+
+[connection signal="input_event" from="MouseArea" to="." method="_on_area_2d_input_event"]
