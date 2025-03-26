@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://kb0vbs3beqtw"]
+
+[ext_resource type="Script" uid="uid://bx3pmkpnp83q7" path="res://Scripts/energy_manager.gd" id="1_gek4i"]
+[ext_resource type="Script" uid="uid://ovqou1pyqpn4" path="res://Scripts/money_manager.gd" id="2_bw2rt"]
+[ext_resource type="Resource" uid="uid://7nqn1q8a0xa7" path="res://Resources/energy_timer_value.tres" id="2_xjnnq"]
+[ext_resource type="Resource" uid="uid://7qk1pwuohekv" path="res://Resources/car_value.tres" id="4_x63ue"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 55.0
+offset_top = 12.0
+offset_bottom = 79.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "$ 45'0"
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+custom_minimum_size = Vector2(500, 40)
+layout_mode = 2
+size_flags_vertical = 4
+show_percentage = false
+
+[node name="EnergyManager" type="Node" parent="." node_paths=PackedStringArray("energy_progress_bar")]
+process_mode = 3
+script = ExtResource("1_gek4i")
+energy_progress_bar = NodePath("../HBoxContainer/ProgressBar")
+total_energy_timer = ExtResource("2_xjnnq")
+
+[node name="Timer" type="Timer" parent="EnergyManager"]
+
+[node name="ChargingTimer" type="Timer" parent="EnergyManager"]
+
+[node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("value_label")]
+script = ExtResource("2_bw2rt")
+value_label = NodePath("../HBoxContainer/Label")
+res_total_value = ExtResource("4_x63ue")

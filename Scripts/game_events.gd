@@ -1,3 +1,5 @@
 extends Node
 
 signal on_player_died
+signal on_charging_zone_entered
+signal on_charging_zone_exited

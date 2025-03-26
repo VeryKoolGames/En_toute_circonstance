@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 
 	var pixel_color = level_image.get_pixelv(image_pos)
 	if is_on_death_color(pixel_color):
-		on_player_death()
+		Events.on_player_died.emit()
 	if should_follow_mouse:
 		global_position = get_global_mouse_position()
 

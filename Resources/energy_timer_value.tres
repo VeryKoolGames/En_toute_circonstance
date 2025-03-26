@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FloatValue" load_steps=2 format=3 uid="uid://7nqn1q8a0xa7"]
+
+[ext_resource type="Script" uid="uid://b77jnjqnccj7" path="res://Resources/float_value.gd" id="1_mj52t"]
+
+[resource]
+script = ExtResource("1_mj52t")
+value = 100.0
+metadata/_custom_type_script = "uid://b77jnjqnccj7"
