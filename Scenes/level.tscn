@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=4 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://bf85dy7wvxatq" path="res://Scenes/chargin_zone.tscn" id="3_6phgx"]
 
 [node name="Level" type="Node2D"]
 
@@ -33,3 +34,6 @@ position = Vector2(84, -105)
 
 [node name="Tree8" parent="PartOne" instance=ExtResource("2_k5f4k")]
 position = Vector2(109, -80)
+
+[node name="CharginZoneOne" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(124, -22)

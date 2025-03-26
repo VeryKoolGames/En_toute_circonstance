@@ -42,3 +42,6 @@ func is_on_death_color(color: Color, tolerance := 0.05) -> bool:
 func on_player_death():
 	should_follow_mouse = false
 	global_position = spawn_position
+
+func set_respawn_point(new_pos: Vector2) -> void:
+	spawn_position = new_pos
