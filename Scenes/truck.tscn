@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvnlk3yoqhkr6"]
+
+[ext_resource type="Script" uid="uid://8w6ot5avisdb" path="res://Scripts/truck_manager.gd" id="1_gyc6o"]
+[ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="2_v14t0"]
+[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="3_sc7ly"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gyc6o"]
+radius = 5.0
+
+[node name="Truck" type="Node2D"]
+script = ExtResource("1_gyc6o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v14t0")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gyc6o")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="PlayerCollision" type="Node" parent="."]
+script = ExtResource("3_sc7ly")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[connection signal="area_entered" from="Area2D" to="PlayerCollision" method="_on_area_2d_area_entered"]

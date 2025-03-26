@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4gx5skpixj84"]
 
 [ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="1_lgx4v"]
-[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scenes/kill_player.gd" id="2_5mkji"]
+[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="2_5mkji"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqkje"]
 radius = 5.0

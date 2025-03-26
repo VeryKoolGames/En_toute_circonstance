@@ -1,15 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=8 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://bf85dy7wvxatq" path="res://Scenes/chargin_zone.tscn" id="3_6phgx"]
-[ext_resource type="Script" uid="uid://8w6ot5avisdb" path="res://Scripts/truck_manager.gd" id="4_wqkje"]
-[ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="5_0f350"]
+[ext_resource type="PackedScene" uid="uid://dvnlk3yoqhkr6" path="res://Scenes/truck.tscn" id="4_0f350"]
 [ext_resource type="Script" uid="uid://fmvq1awl4bhh" path="res://Scripts/rock_spawner.gd" id="6_8c0lf"]
-[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scenes/kill_player.gd" id="6_754fn"]
 [ext_resource type="PackedScene" uid="uid://c4gx5skpixj84" path="res://Scenes/rock.tscn" id="7_754fn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqkje"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0f350"]
 a = Vector2(12, -9)
@@ -60,24 +56,8 @@ offset_top = -7.0
 offset_right = 150.0
 offset_bottom = 8.0
 
-[node name="Truck" type="Node2D" parent="PartTwo/Control"]
+[node name="Truck" parent="PartTwo/Control" instance=ExtResource("4_0f350")]
 position = Vector2(-10, 7)
-script = ExtResource("4_wqkje")
-
-[node name="Sprite2D" type="Sprite2D" parent="PartTwo/Control/Truck"]
-texture = ExtResource("5_0f350")
-
-[node name="Area2D" type="Area2D" parent="PartTwo/Control/Truck"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PartTwo/Control/Truck/Area2D"]
-shape = SubResource("RectangleShape2D_wqkje")
-
-[node name="Timer" type="Timer" parent="PartTwo/Control/Truck"]
-wait_time = 3.0
-
-[node name="PlayerCollision" type="Node" parent="PartTwo/Control/Truck"]
-script = ExtResource("6_754fn")
-metadata/_custom_type_script = "uid://cqoo6850gcfqh"
 
 [node name="PartThree" type="Node2D" parent="."]
 position = Vector2(-111, -8)
@@ -94,5 +74,3 @@ position = Vector2(-4, 47)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PartThree/Ground"]
 shape = SubResource("SegmentShape2D_0f350")
-
-[connection signal="area_entered" from="PartTwo/Control/Truck/Area2D" to="PartTwo/Control/Truck/PlayerCollision" method="_on_area_2d_area_entered"]

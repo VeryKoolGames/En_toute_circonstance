@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bm1xyqs8ygm5s"]
 
 [ext_resource type="Texture2D" uid="uid://fn5vrgto8os8" path="res://Sprites/Sapin.png" id="1_0vwjc"]
-[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scenes/kill_player.gd" id="2_rsuno"]
+[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="2_rsuno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rsuno"]
 size = Vector2(6, 10)
