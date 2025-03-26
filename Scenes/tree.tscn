@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://fn5vrgto8os8" path="res://Sprites/Sapin.png" id="1_0vwjc"]
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="2_rsuno"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsuno"]
-size = Vector2(6, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rsuno"]
+radius = 3.0
+height = 8.0
 
 [node name="Tree" type="Node2D"]
 
@@ -14,7 +15,7 @@ texture = ExtResource("1_0vwjc")
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
-shape = SubResource("RectangleShape2D_rsuno")
+shape = SubResource("CapsuleShape2D_rsuno")
 
 [node name="PlayerCollision" type="Node" parent="."]
 script = ExtResource("2_rsuno")

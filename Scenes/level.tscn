@@ -42,6 +42,9 @@ position = Vector2(84, -105)
 [node name="Tree8" parent="PartOne" instance=ExtResource("2_k5f4k")]
 position = Vector2(109, -80)
 
+[node name="CharginZoneStart" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(-201, -95)
+
 [node name="CharginZoneOne" parent="." instance=ExtResource("3_6phgx")]
 position = Vector2(124, -22)
 
