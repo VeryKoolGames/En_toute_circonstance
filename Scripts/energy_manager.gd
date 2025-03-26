@@ -13,7 +13,7 @@ func _ready() -> void:
 	energy_timer.timeout.connect(on_energy_empty)
 	_start_using_energy()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not energy_timer.is_stopped():
 		energy_progress_bar.value = energy_timer.time_left
 	else:
