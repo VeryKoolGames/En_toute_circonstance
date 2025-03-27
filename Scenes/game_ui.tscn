@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://kb0vbs3beqtw"]
+[gd_scene load_steps=7 format=3 uid="uid://kb0vbs3beqtw"]
 
+[ext_resource type="FontFile" uid="uid://dsvwo8iqoy5g6" path="res://Fonts/PxGrotesk-Screen.otf" id="1_1t2s1"]
 [ext_resource type="Script" uid="uid://bx3pmkpnp83q7" path="res://Scripts/energy_manager.gd" id="1_gek4i"]
+[ext_resource type="Texture2D" uid="uid://cu0b8urqnch5m" path="res://Sprites/ElectricityUI.png" id="1_gjn1n"]
 [ext_resource type="Script" uid="uid://ovqou1pyqpn4" path="res://Scripts/money_manager.gd" id="2_bw2rt"]
 [ext_resource type="Resource" uid="uid://7nqn1q8a0xa7" path="res://Resources/energy_timer_value.tres" id="2_xjnnq"]
 [ext_resource type="Resource" uid="uid://7qk1pwuohekv" path="res://Resources/car_value.tres" id="4_x63ue"]
@@ -11,31 +13,39 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 55.0
-offset_top = 12.0
-offset_bottom = 79.0
-grow_horizontal = 2
-theme_override_constants/separation = 50
-
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 2
+offset_left = 711.0
+offset_top = 23.0
+offset_right = 800.0
+offset_bottom = 68.0
+theme_override_fonts/font = ExtResource("1_1t2s1")
 theme_override_font_sizes/font_size = 32
 text = "$ 45'0"
 
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(500, 40)
 layout_mode = 2
+offset_left = 137.0
+offset_top = 25.0
+offset_right = 637.0
+offset_bottom = 65.0
 size_flags_vertical = 4
 show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 54.0
+offset_top = 12.0
+offset_right = 651.0
+offset_bottom = 79.0
+texture = ExtResource("1_gjn1n")
+stretch_mode = 4
 
 [node name="EnergyManager" type="Node" parent="." node_paths=PackedStringArray("energy_progress_bar")]
 process_mode = 3
 script = ExtResource("1_gek4i")
-energy_progress_bar = NodePath("../HBoxContainer/ProgressBar")
+energy_progress_bar = NodePath("../ProgressBar")
 total_energy_timer = ExtResource("2_xjnnq")
 
 [node name="Timer" type="Timer" parent="EnergyManager"]
@@ -44,5 +54,5 @@ total_energy_timer = ExtResource("2_xjnnq")
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("value_label")]
 script = ExtResource("2_bw2rt")
-value_label = NodePath("../HBoxContainer/Label")
+value_label = NodePath("../Label")
 res_total_value = ExtResource("4_x63ue")

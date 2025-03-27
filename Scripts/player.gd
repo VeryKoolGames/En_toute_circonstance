@@ -30,8 +30,8 @@ func _process(delta: float) -> void:
 
 	if is_inside_image(image_pos):
 		var pixel_color = level_image.get_pixelv(image_pos)
-		#if is_on_death_color(pixel_color) and not is_player_safe:
-			#Events.on_player_died.emit()
+		if is_on_death_color(pixel_color) and not is_player_safe:
+			Events.on_player_died.emit()
 		if should_follow_mouse:
 			global_position = get_global_mouse_position()
 
@@ -42,6 +42,10 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event.is_action_pressed("mouse_pressed"):
 		should_follow_mouse = not should_follow_mouse
 		car_sound.playing = not car_sound.playing
+		if should_follow_mouse:
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func is_on_death_color(color: Color, tolerance := 0.05) -> bool:
 	return abs(color.r - background_color.r) <= tolerance and \
@@ -52,6 +56,7 @@ func on_player_death() -> void:
 	car_crash_sound.playing = true
 	should_follow_mouse = false
 	global_position = spawn_position
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func set_respawn_point(new_pos: Vector2) -> void:
 	spawn_position = new_pos
