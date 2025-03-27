@@ -33,4 +33,4 @@ func _start_using_energy():
 	charging_timer.stop()
 
 func on_energy_empty():
-	Events.on_player_died.emit()
+	Events.on_energy_emptied.emit()

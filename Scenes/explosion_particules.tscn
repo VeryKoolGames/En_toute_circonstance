@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cakhowcvdsa18"]
+[gd_scene load_steps=2 format=3 uid="uid://d00l563g2c7wb"]
 
 [sub_resource type="Curve" id="Curve_ixug2"]
 _data = [Vector2(0.00491803, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.86256, 0.0, 0, 0]
@@ -17,5 +17,7 @@ initial_velocity_min = 100.0
 initial_velocity_max = 140.0
 damping_min = 240.0
 damping_max = 300.0
+scale_amount_min = 1.5
+scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_ixug2")
 color = Color(1, 0, 0.301961, 1)

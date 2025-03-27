@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=38 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://vea4xtchh2tq" path="res://Sprites/Projectile2.png" id="19_00k4y"]
 [ext_resource type="Script" uid="uid://cgtkij2ebcdho" path="res://Scenes/projectile_movement.gd" id="19_3a44l"]
 [ext_resource type="AudioStream" uid="uid://cjwbyolfkeqf6" path="res://Sounds/crowd_noise.wav" id="19_53r2q"]
+[ext_resource type="PackedScene" uid="uid://b301he6qmjddd" path="res://Scenes/moving_door.tscn" id="19_luodc"]
 [ext_resource type="Script" uid="uid://dgje751gg5ixu" path="res://Scenes/gravity_manager.gd" id="21_0cmrb"]
 [ext_resource type="PackedScene" uid="uid://cvr7dj5uotcm2" path="res://Scenes/mine.tscn" id="22_gf56v"]
 [ext_resource type="Texture2D" uid="uid://f36fla36wys" path="res://Sprites/enfant.png" id="23_6y3s5"]
@@ -282,6 +283,22 @@ one_shot = true
 [node name="CrowNoiseSound" type="AudioStreamPlayer2D" parent="PartSeven/WaitingArea"]
 stream = ExtResource("19_53r2q")
 
+[node name="DoorView" type="Control" parent="PartSeven"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -107.0
+offset_top = 26.0
+offset_right = -88.0
+offset_bottom = 64.0
+
+[node name="DoorOne" parent="PartSeven/DoorView" instance=ExtResource("19_luodc")]
+position = Vector2(9, 8)
+
+[node name="DoorOne2" parent="PartSeven/DoorView" instance=ExtResource("19_luodc")]
+position = Vector2(9, 32)
+initial_delay = 2.0
+
 [node name="PartEight" type="Node2D" parent="."]
 position = Vector2(-22, 106)
 
@@ -443,7 +460,7 @@ position = Vector2(119, 42)
 position = Vector2(-8, 8)
 
 [node name="Mine3" parent="PartEleven" instance=ExtResource("22_gf56v")]
-position = Vector2(11, -13)
+position = Vector2(11, -11)
 
 [node name="Mine4" parent="PartEleven" instance=ExtResource("22_gf56v")]
 position = Vector2(1, 45)

@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://v30fe1sniv4s"]
+[gd_scene load_steps=13 format=3 uid="uid://v30fe1sniv4s"]
 
 [ext_resource type="Script" uid="uid://7rc5duwx4rvx" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="2_6t5aa"]
+[ext_resource type="PackedScene" uid="uid://cjluekd64wnmx" path="res://Scenes/recharge_particules.tscn" id="2_fkybt"]
 [ext_resource type="AudioStream" uid="uid://d3s3yif5djc4r" path="res://Sounds/car_sound.wav" id="3_6t5aa"]
 [ext_resource type="AudioStream" uid="uid://4dnqqcf14qii" path="res://Sounds/car_crash.wav" id="4_vgqql"]
+[ext_resource type="PackedScene" uid="uid://d00l563g2c7wb" path="res://Scenes/explosion_particules.tscn" id="6_x3wgy"]
+[ext_resource type="Texture2D" uid="uid://88fn8urwxedi" path="res://Sprites/car_halo.png" id="7_3smsa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
 radius = 9.0
@@ -11,8 +14,72 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
 radius = 5.0
 
+[sub_resource type="Animation" id="Animation_3smsa"]
+resource_name = "car_before_start_anim"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.99),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_8erm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ek2"]
+_data = {
+&"RESET": SubResource("Animation_8erm5"),
+&"car_before_start_anim": SubResource("Animation_3smsa")
+}
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_cvnsp")
+
+[node name="RechargeParticles" parent="." instance=ExtResource("2_fkybt")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_6t5aa")
@@ -34,6 +101,17 @@ volume_db = -10.0
 [node name="CarCrashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_vgqql")
 volume_db = -5.0
+
+[node name="ExplosionParticules" parent="." instance=ExtResource("6_x3wgy")]
+
+[node name="CarHalo" type="Sprite2D" parent="."]
+texture = ExtResource("7_3smsa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CarHalo"]
+libraries = {
+&"": SubResource("AnimationLibrary_f1ek2")
+}
+autoplay = "car_before_start_anim"
 
 [connection signal="input_event" from="MouseArea" to="." method="_on_area_2d_input_event"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bp28rhdj4gg7l"]
+[gd_scene load_steps=26 format=3 uid="uid://be5d4bbhf42n7"]
 
 [ext_resource type="Script" uid="uid://dtkr7snq4jtws" path="res://start_menu_manager.gd" id="1_8u0lp"]
 [ext_resource type="Texture2D" uid="uid://sdl140bi1hwb" path="res://Sprites/Logo1.png" id="2_i2i62"]
@@ -23,6 +23,21 @@
 [sub_resource type="Theme" id="Theme_rpttd"]
 Panel/styles/panel = SubResource("StyleBoxFlat_7vuks")
 
+[sub_resource type="Animation" id="Animation_qnxl2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_i2i62")]
+}
+
 [sub_resource type="Animation" id="Animation_slhe1"]
 resource_name = "voitureMenu"
 length = 0.8
@@ -40,7 +55,13 @@ tracks/0/keys = {
 "values": [ExtResource("2_i2i62"), ExtResource("3_rpttd")]
 }
 
-[sub_resource type="Animation" id="Animation_qnxl2"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1u5ka"]
+_data = {
+&"RESET": SubResource("Animation_qnxl2"),
+&"voitureMenu": SubResource("Animation_slhe1")
+}
+
+[sub_resource type="Animation" id="Animation_6k3d4"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -52,13 +73,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_i2i62")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1u5ka"]
-_data = {
-&"RESET": SubResource("Animation_qnxl2"),
-&"voitureMenu": SubResource("Animation_slhe1")
+"values": [ExtResource("4_00l4x")]
 }
 
 [sub_resource type="Animation" id="Animation_l146v"]
@@ -75,21 +90,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("4_00l4x"), ExtResource("5_qnxl2"), ExtResource("6_1u5ka"), ExtResource("7_jfkjl"), ExtResource("8_rl2bw")]
-}
-
-[sub_resource type="Animation" id="Animation_6k3d4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_00l4x")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7c4jf"]
@@ -204,6 +204,7 @@ text = "quitter"
 flat = true
 
 [node name="arrow_2" type="TextureRect" parent="StartMenuUI/quitter"]
+layout_mode = 0
 offset_left = 18.0
 offset_top = 14.0
 offset_right = 29.0

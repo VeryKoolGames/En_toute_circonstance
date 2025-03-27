@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bio0dxmqbfiuk"]
+[gd_scene load_steps=3 format=3 uid="uid://cjluekd64wnmx"]
 
 [ext_resource type="Texture2D" uid="uid://h0nuawfd1l38" path="res://Sprites/Electricité.png" id="1_4fwub"]
 
@@ -11,6 +11,6 @@ amount = 4
 texture = ExtResource("1_4fwub")
 lifetime = 1.84
 emission_shape = 3
-emission_rect_extents = Vector2(15, 15)
+emission_rect_extents = Vector2(10, 10)
 gravity = Vector2(0, -3.94)
 scale_amount_curve = SubResource("Curve_s63ww")
