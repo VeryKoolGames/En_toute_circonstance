@@ -7,9 +7,11 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
+		print("Player entered")
 		timer.start()
 
 func on_waiting_complete():
+	print("waiting completed")
 	Events.on_pietion_waited.emit()
 
 func _on_area_exited(area: Area2D) -> void:

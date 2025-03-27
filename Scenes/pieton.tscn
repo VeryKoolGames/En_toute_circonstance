@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp887lg0soger"]
+[gd_scene load_steps=5 format=3 uid="uid://bp887lg0soger"]
 
 [ext_resource type="Script" uid="uid://bcv3jxltrwwv4" path="res://Scenes/pieton_manager.gd" id="1_ng3f3"]
-[ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="2_a3wxl"]
+[ext_resource type="Texture2D" uid="uid://cx84l2fde83la" path="res://Sprites/pieton1.png" id="2_ng3f3"]
+[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="3_a3wxl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c7le1"]
 radius = 4.0
@@ -10,7 +11,7 @@ radius = 4.0
 script = ExtResource("1_ng3f3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_a3wxl")
+texture = ExtResource("2_ng3f3")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -19,3 +20,9 @@ shape = SubResource("CircleShape2D_c7le1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 7.0
+
+[node name="PlayerCollision" type="Node" parent="."]
+script = ExtResource("3_a3wxl")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[connection signal="area_entered" from="Area2D" to="PlayerCollision" method="_on_area_2d_area_entered"]
