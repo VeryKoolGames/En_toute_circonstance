@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b24a3oyjqgh5c"]
+
+[sub_resource type="Curve" id="Curve_s63ww"]
+_data = [Vector2(0.00491803, 1), 0.0, 0.0, 0, 0, Vector2(0.901639, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="AntiGravitéParticules" type="CPUParticles2D"]
+lifetime = 1.84
+emission_shape = 3
+emission_rect_extents = Vector2(40, 60)
+gravity = Vector2(0, -3.94)
+scale_amount_curve = SubResource("Curve_s63ww")
+color = Color(0.386901, 0.432867, 0.802481, 1)
