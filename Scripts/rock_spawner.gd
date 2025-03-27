@@ -3,7 +3,6 @@ extends Node2D
 @onready var spawn_timer: Timer = $Timer
 @export var rock_scene: PackedScene
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	spawn_timer.timeout.connect(_spawn_rock)
 	spawn_timer.start()

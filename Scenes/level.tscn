@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=26 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -13,7 +13,16 @@
 [ext_resource type="Script" uid="uid://rnvrcuq05h03" path="res://Scripts/key.gd" id="11_ha31o"]
 [ext_resource type="Texture2D" uid="uid://tjdif8xrxykt" path="res://Sprites/clef.png" id="11_pa6b8"]
 [ext_resource type="PackedScene" uid="uid://b6xexbvafpety" path="res://Scenes/plateforme.tscn" id="13_pa6b8"]
+[ext_resource type="PackedScene" uid="uid://bp887lg0soger" path="res://Scenes/pieton.tscn" id="14_c7le1"]
 [ext_resource type="PackedScene" uid="uid://delyuydsqyaqt" path="res://Scenes/train.tscn" id="14_crh0w"]
+[ext_resource type="Script" uid="uid://jyprx7rn35qj" path="res://Scenes/pieton_spawner.gd" id="15_2klc5"]
+[ext_resource type="Script" uid="uid://dohanfm2iscjn" path="res://Scenes/pieton_waiting_area_manager.gd" id="16_nngtn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crh0w"]
+size = Vector2(15, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7le1"]
+size = Vector2(13, 7)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0f350"]
 a = Vector2(12, -9)
@@ -27,6 +36,9 @@ radius = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa6b8"]
 size = Vector2(8, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
+size = Vector2(20, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nngtn"]
 size = Vector2(4, 6)
@@ -84,6 +96,23 @@ offset_bottom = 8.0
 
 [node name="Truck" parent="PartTwo/Control" instance=ExtResource("4_0f350")]
 position = Vector2(-10, 7)
+
+[node name="PlayerZoneDetection2" type="Node2D" parent="PartTwo"]
+position = Vector2(17, 19)
+metadata/_edit_group_ = true
+
+[node name="ZoneEnterArea" type="Area2D" parent="PartTwo/PlayerZoneDetection2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartTwo/PlayerZoneDetection2/ZoneEnterArea"]
+position = Vector2(127, 0)
+shape = SubResource("RectangleShape2D_crh0w")
+
+[node name="ZoneExitArea" type="Area2D" parent="PartTwo/PlayerZoneDetection2"]
+position = Vector2(54, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartTwo/PlayerZoneDetection2/ZoneExitArea"]
+position = Vector2(-71, -1)
+shape = SubResource("RectangleShape2D_c7le1")
 
 [node name="PartThree" type="Node2D" parent="."]
 position = Vector2(-111, -8)
@@ -172,6 +201,48 @@ move_left = true
 [node name="PartSeven" type="Node2D" parent="."]
 position = Vector2(76, 30)
 
+[node name="PietonView" type="Control" parent="PartSeven"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -85.0
+offset_top = -19.0
+offset_right = -15.0
+offset_bottom = 15.0
+
+[node name="PietonSpawner" type="Node2D" parent="PartSeven" node_paths=PackedStringArray("parent")]
+position = Vector2(-19, -20)
+script = ExtResource("15_2klc5")
+parent = NodePath("../PietonView")
+pieton_scene = ExtResource("14_c7le1")
+
+[node name="Timer" type="Timer" parent="PartSeven/PietonSpawner"]
+
+[node name="PietonSpawner2" type="Node2D" parent="PartSeven" node_paths=PackedStringArray("parent")]
+position = Vector2(-49, -20)
+script = ExtResource("15_2klc5")
+parent = NodePath("../PietonView")
+pieton_scene = ExtResource("14_c7le1")
+
+[node name="Timer" type="Timer" parent="PartSeven/PietonSpawner2"]
+
+[node name="PietonSpawner3" type="Node2D" parent="PartSeven" node_paths=PackedStringArray("parent")]
+position = Vector2(-72, -20)
+script = ExtResource("15_2klc5")
+parent = NodePath("../PietonView")
+pieton_scene = ExtResource("14_c7le1")
+
+[node name="Timer" type="Timer" parent="PartSeven/PietonSpawner3"]
+
+[node name="WaitingArea" type="Area2D" parent="PartSeven"]
+script = ExtResource("16_nngtn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartSeven/WaitingArea"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2klc5")
+
+[node name="Timer" type="Timer" parent="PartSeven/WaitingArea"]
+
 [node name="PartEight" type="Node2D" parent="."]
 position = Vector2(-22, 106)
 
@@ -205,5 +276,26 @@ position = Vector2(68, 12)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PartEight/TrainStops/TrainStopTwo/Area2D"]
 shape = SubResource("RectangleShape2D_nngtn")
 
+[node name="PlayerZoneDetection" type="Node2D" parent="PartEight"]
+
+[node name="Area2D" type="Area2D" parent="PartEight/PlayerZoneDetection"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEight/PlayerZoneDetection/Area2D"]
+position = Vector2(0.5, -3)
+shape = SubResource("RectangleShape2D_crh0w")
+
+[node name="Area2D2" type="Area2D" parent="PartEight/PlayerZoneDetection"]
+position = Vector2(54, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEight/PlayerZoneDetection/Area2D2"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_c7le1")
+
+[connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneEnterArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
+[connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneExitArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
 [connection signal="area_entered" from="PartFour/RotatingTurbine/Area2D" to="PartFour/RotatingTurbine/PlayerCollision" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartFour/Key/Area2D" to="PartFour/Key" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartSeven/WaitingArea" to="PartSeven/WaitingArea" method="_on_area_entered"]
+[connection signal="area_exited" from="PartSeven/WaitingArea" to="PartSeven/WaitingArea" method="_on_area_exited"]
+[connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D" to="PartEight/TrainView/Train" method="_on_zone_entered"]
+[connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D2" to="PartEight/TrainView/Train" method="_on_zone_exit_entered"]

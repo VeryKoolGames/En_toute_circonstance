@@ -1,0 +1,172 @@
+[gd_scene load_steps=15 format=3 uid="uid://be5d4bbhf42n7"]
+
+[ext_resource type="Script" uid="uid://dtkr7snq4jtws" path="res://start_menu_manager.gd" id="1_8u0lp"]
+[ext_resource type="Texture2D" uid="uid://sdl140bi1hwb" path="res://Sprites/Logo1.png" id="2_i2i62"]
+[ext_resource type="Texture2D" uid="uid://3hualm26lbd8" path="res://Sprites/En.png" id="3_lfskg"]
+[ext_resource type="Texture2D" uid="uid://c68tmpap51dt6" path="res://Sprites/Toute.png" id="4_ru7em"]
+[ext_resource type="Texture2D" uid="uid://bwx77bf234p2i" path="res://Sprites/circonstance.png" id="5_77ila"]
+[ext_resource type="Texture2D" uid="uid://bjug17do7yw2l" path="res://Sprites/arrow.png" id="6_00l4x"]
+[ext_resource type="AudioStream" uid="uid://ca5rgsucn72f6" path="res://Sounds/snoring.wav" id="7_i2i62"]
+[ext_resource type="FontFile" uid="uid://dsvwo8iqoy5g6" path="res://Fonts/PxGrotesk-Screen.otf" id="7_ru7em"]
+[ext_resource type="AudioStream" uid="uid://criytkaneei43" path="res://Sounds/phone_vibrating.wav" id="8_lfskg"]
+[ext_resource type="AudioStream" uid="uid://bqhj3pruvwlgn" path="res://Sounds/phone_speech.wav" id="10_77ila"]
+[ext_resource type="AudioStream" uid="uid://dbslwt630uaix" path="res://Sounds/angry_dad.wav" id="11_00l4x"]
+[ext_resource type="AudioStream" uid="uid://bb3k1bm2acu4w" path="res://Sounds/wake_up_sound.wav" id="12_7vuks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vuks"]
+
+[sub_resource type="Theme" id="Theme_rpttd"]
+Panel/styles/panel = SubResource("StyleBoxFlat_7vuks")
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_8u0lp")
+
+[node name="StartMenuUI" type="Control" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_rpttd")
+
+[node name="Panel" type="ColorRect" parent="StartMenuUI"]
+process_mode = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.113725, 0.32549, 1)
+
+[node name="LogoHContainer" type="HBoxContainer" parent="StartMenuUI"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 184.0
+offset_right = -579.0
+offset_bottom = 264.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TextureRect4" type="TextureRect" parent="StartMenuUI/LogoHContainer"]
+layout_mode = 2
+texture = ExtResource("2_i2i62")
+expand_mode = 3
+
+[node name="NameHContainer" type="HBoxContainer" parent="StartMenuUI"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -245.0
+offset_bottom = -185.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="StartMenuUI/NameHContainer"]
+layout_mode = 2
+texture = ExtResource("3_lfskg")
+expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="StartMenuUI/NameHContainer"]
+layout_mode = 2
+texture = ExtResource("4_ru7em")
+expand_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="StartMenuUI/NameHContainer"]
+layout_mode = 2
+texture = ExtResource("5_77ila")
+expand_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="StartMenuUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 824.0
+offset_top = -411.0
+offset_right = -881.0
+offset_bottom = -243.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 40
+columns = 2
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="StartMenuUI/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_00l4x")
+
+[node name="TextureButton" type="TextureButton" parent="StartMenuUI/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_77ila")
+texture_pressed = ExtResource("5_77ila")
+texture_hover = ExtResource("3_lfskg")
+stretch_mode = 0
+
+[node name="TextureRect2" type="TextureRect" parent="StartMenuUI/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_00l4x")
+
+[node name="TextureButton2" type="TextureButton" parent="StartMenuUI/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_77ila")
+stretch_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="StartMenuUI"]
+process_mode = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="StartMenuUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.0
+offset_top = -137.0
+offset_right = 336.0
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.639216, 0.00392157, 1)
+theme_override_fonts/font = ExtResource("7_ru7em")
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="SnoringSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_i2i62")
+
+[node name="PhoneSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_lfskg")
+
+[node name="SpeechSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_77ila")
+
+[node name="AngryDadSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("11_00l4x")
+
+[node name="WakeUpSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("12_7vuks")
+
+[connection signal="button_up" from="StartMenuUI/GridContainer/TextureButton" to="." method="on_start_button_up"]

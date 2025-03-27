@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://delyuydsqyaqt"]
+[gd_scene load_steps=7 format=3 uid="uid://delyuydsqyaqt"]
 
-[ext_resource type="Script" uid="uid://ggjv02ax5b15" path="res://Scenes/train_manager.gd" id="1_nxpru"]
+[ext_resource type="Script" uid="uid://ggjv02ax5b15" path="res://Scripts/train_manager.gd" id="1_nxpru"]
 [ext_resource type="Texture2D" uid="uid://djkgabfulwb1h" path="res://Sprites/BAM.png" id="2_0hk28"]
+[ext_resource type="AudioStream" uid="uid://dwgfv8m0jqkyj" path="res://Sounds/train_horn.wav" id="3_0hk28"]
+[ext_resource type="AudioStream" uid="uid://dg2to2rviuq1l" path="res://Sounds/train_move.wav" id="4_mcim7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7le1"]
 
@@ -31,5 +33,11 @@ position = Vector2(-12, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StopDectector/Area2D"]
 position = Vector2(8, -1)
 shape = SubResource("RectangleShape2D_2klc5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0hk28")
+
+[node name="TrainMoveSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mcim7")
 
 [connection signal="area_entered" from="StopDectector/Area2D" to="." method="_on_area_2d_area_entered"]

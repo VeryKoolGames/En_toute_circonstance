@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvnlk3yoqhkr6"]
+[gd_scene load_steps=8 format=3 uid="uid://dvnlk3yoqhkr6"]
 
 [ext_resource type="Script" uid="uid://8w6ot5avisdb" path="res://Scripts/truck_manager.gd" id="1_gyc6o"]
 [ext_resource type="Texture2D" uid="uid://c0yfpyhu78623" path="res://Sprites/camion.png" id="2_gyc6o"]
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="3_sc7ly"]
+[ext_resource type="AudioStream" uid="uid://das6eog1nqf6v" path="res://Sounds/truck_honk1.wav" id="4_v14t0"]
+[ext_resource type="AudioStream" uid="uid://cnampei1fqsrp" path="res://Sounds/car_passing.wav" id="5_sc7ly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v14t0"]
 size = Vector2(30, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc7ly"]
+size = Vector2(21, 12)
 
 [node name="Truck" type="Node2D"]
 script = ExtResource("1_gyc6o")
@@ -25,4 +30,18 @@ wait_time = 3.0
 script = ExtResource("3_sc7ly")
 metadata/_custom_type_script = "uid://cqoo6850gcfqh"
 
+[node name="HonkArea" type="Area2D" parent="."]
+position = Vector2(28, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HonkArea"]
+position = Vector2(5.5, 0)
+shape = SubResource("RectangleShape2D_sc7ly")
+
+[node name="HonkSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_v14t0")
+
+[node name="AmbientSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_sc7ly")
+
 [connection signal="area_entered" from="Area2D" to="PlayerCollision" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="HonkArea" to="." method="_on_honk_area_area_entered"]

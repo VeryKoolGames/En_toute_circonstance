@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://v30fe1sniv4s"]
+[gd_scene load_steps=7 format=3 uid="uid://v30fe1sniv4s"]
 
 [ext_resource type="Script" uid="uid://7rc5duwx4rvx" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="2_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://d3s3yif5djc4r" path="res://Sounds/car_sound.wav" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://4dnqqcf14qii" path="res://Sounds/car_crash.wav" id="4_vgqql"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
 radius = 9.0
@@ -24,6 +26,14 @@ shape = SubResource("CircleShape2D_vgqql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_cvnsp")
+
+[node name="CarSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6t5aa")
+volume_db = -10.0
+
+[node name="CarCrashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vgqql")
+volume_db = -5.0
 
 [connection signal="input_event" from="MouseArea" to="." method="_on_area_2d_input_event"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -5,6 +5,8 @@ var level_image: Image
 var level_origin: Vector2
 var background_color := Color(0.1333, 0.1137, 0.3255, 1.0)
 var spawn_position: Vector2
+@onready var car_sound: AudioStreamPlayer2D = $CarSound
+@onready var car_crash_sound: AudioStreamPlayer2D = $CarCrashSound
 
 # PLATEFORM LOGIC
 
@@ -26,10 +28,10 @@ func _process(delta: float) -> void:
 	var world_pos = global_position
 	var image_pos = (world_pos - level_origin).floor()
 
-	var pixel_color = level_image.get_pixelv(image_pos)
 	if is_inside_image(image_pos):
-		if is_on_death_color(pixel_color) and not is_player_safe:
-			Events.on_player_died.emit()
+		var pixel_color = level_image.get_pixelv(image_pos)
+		#if is_on_death_color(pixel_color) and not is_player_safe:
+			#Events.on_player_died.emit()
 		if should_follow_mouse:
 			global_position = get_global_mouse_position()
 
@@ -38,7 +40,8 @@ func is_inside_image(pos: Vector2) -> bool:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("mouse_pressed"):
-		should_follow_mouse = true
+		should_follow_mouse = not should_follow_mouse
+		car_sound.playing = not car_sound.playing
 
 func is_on_death_color(color: Color, tolerance := 0.05) -> bool:
 	return abs(color.r - background_color.r) <= tolerance and \
@@ -46,6 +49,7 @@ func is_on_death_color(color: Color, tolerance := 0.05) -> bool:
 		   abs(color.b - background_color.b) <= tolerance
 
 func on_player_death() -> void:
+	car_crash_sound.playing = true
 	should_follow_mouse = false
 	global_position = spawn_position
 
@@ -63,6 +67,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if area.is_in_group("plateforme"):
+		plateform_count -= 1
 		if plateform_count == 0:
 			is_player_safe = false
-		plateform_count -= 1
