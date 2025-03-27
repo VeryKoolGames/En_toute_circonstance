@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://delyuydsqyaqt"]
+
+[ext_resource type="Script" uid="uid://ggjv02ax5b15" path="res://Scenes/train_manager.gd" id="1_nxpru"]
+[ext_resource type="Texture2D" uid="uid://djkgabfulwb1h" path="res://Sprites/BAM.png" id="2_0hk28"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7le1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
+size = Vector2(2.5, 5)
+
+[node name="Train" type="Node2D"]
+script = ExtResource("1_nxpru")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0hk28")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-12, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_c7le1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+
+[node name="StopDectector" type="Node2D" parent="."]
+position = Vector2(-12, 0)
+
+[node name="Area2D" type="Area2D" parent="StopDectector"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StopDectector/Area2D"]
+position = Vector2(8, -1)
+shape = SubResource("RectangleShape2D_2klc5")
+
+[connection signal="area_entered" from="StopDectector/Area2D" to="." method="_on_area_2d_area_entered"]

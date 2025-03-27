@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=20 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://bf85dy7wvxatq" path="res://Scenes/chargin_zone.tscn" id="3_6phgx"]
 [ext_resource type="PackedScene" uid="uid://dvnlk3yoqhkr6" path="res://Scenes/truck.tscn" id="4_0f350"]
-[ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="5_0f350"]
 [ext_resource type="Script" uid="uid://fmvq1awl4bhh" path="res://Scripts/rock_spawner.gd" id="6_8c0lf"]
 [ext_resource type="PackedScene" uid="uid://c4gx5skpixj84" path="res://Scenes/rock.tscn" id="7_754fn"]
 [ext_resource type="Texture2D" uid="uid://45e831gadbji" path="res://Sprites/porte.png" id="7_bvt00"]
@@ -12,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bkuhqgkaa1cdu" path="res://Sprites/Turbine1.png" id="9_qxfql"]
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="10_oqgf2"]
 [ext_resource type="Script" uid="uid://rnvrcuq05h03" path="res://Scripts/key.gd" id="11_ha31o"]
+[ext_resource type="Texture2D" uid="uid://tjdif8xrxykt" path="res://Sprites/clef.png" id="11_pa6b8"]
+[ext_resource type="PackedScene" uid="uid://b6xexbvafpety" path="res://Scenes/plateforme.tscn" id="13_pa6b8"]
+[ext_resource type="PackedScene" uid="uid://delyuydsqyaqt" path="res://Scenes/train.tscn" id="14_crh0w"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_0f350"]
 a = Vector2(12, -9)
@@ -25,6 +27,9 @@ radius = 4.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pa6b8"]
 size = Vector2(8, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nngtn"]
+size = Vector2(4, 6)
 
 [node name="Level" type="Node2D"]
 
@@ -119,18 +124,18 @@ metadata/_custom_type_script = "uid://cqoo6850gcfqh"
 [node name="Key" type="Node2D" parent="PartFour" node_paths=PackedStringArray("door")]
 position = Vector2(0, -38)
 script = ExtResource("11_ha31o")
-door = NodePath("../Door/Door")
+door = NodePath("../DoorView/Door")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="PartFour/Key"]
-texture = ExtResource("5_0f350")
+texture = ExtResource("11_pa6b8")
 
 [node name="Area2D" type="Area2D" parent="PartFour/Key"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/Key/Area2D"]
 shape = SubResource("CircleShape2D_qxfql")
 
-[node name="Door" type="Control" parent="PartFour"]
+[node name="DoorView" type="Control" parent="PartFour"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
@@ -138,22 +143,67 @@ offset_top = -8.0
 offset_right = 46.0
 offset_bottom = 7.0
 
-[node name="Door" type="Node2D" parent="PartFour/Door"]
+[node name="Door" type="Node2D" parent="PartFour/DoorView"]
 position = Vector2(23, 0.5)
 
-[node name="DoorSprite" type="Sprite2D" parent="PartFour/Door/Door"]
+[node name="DoorSprite" type="Sprite2D" parent="PartFour/DoorView/Door"]
 process_mode = 3
 position = Vector2(0, 8)
 texture = ExtResource("7_bvt00")
 
-[node name="Area2D" type="Area2D" parent="PartFour/Door/Door"]
+[node name="Area2D" type="Area2D" parent="PartFour/DoorView/Door"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/Door/Door/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/DoorView/Door/Area2D"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_pa6b8")
 
 [node name="PartFive" type="Node2D" parent="."]
 position = Vector2(-69, 27)
+
+[node name="PartSix" type="Node2D" parent="."]
+
+[node name="Plateforme" parent="PartSix" instance=ExtResource("13_pa6b8")]
+position = Vector2(-19, -6)
+
+[node name="Plateforme2" parent="PartSix" instance=ExtResource("13_pa6b8")]
+position = Vector2(51, -6)
+move_left = true
+
+[node name="PartSeven" type="Node2D" parent="."]
+position = Vector2(76, 30)
+
+[node name="PartEight" type="Node2D" parent="."]
+position = Vector2(-22, 106)
+
+[node name="TrainView" type="Control" parent="PartEight"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -13.0
+offset_top = 4.0
+offset_right = 115.0
+offset_bottom = 21.0
+
+[node name="Train" parent="PartEight/TrainView" instance=ExtResource("14_crh0w")]
+position = Vector2(-18, 7)
+
+[node name="TrainStops" type="Node2D" parent="PartEight"]
+
+[node name="TrainStopOne" type="Node2D" parent="PartEight/TrainStops"]
+position = Vector2(0, 12)
+
+[node name="Area2D" type="Area2D" parent="PartEight/TrainStops/TrainStopOne" groups=["train_stop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEight/TrainStops/TrainStopOne/Area2D"]
+shape = SubResource("RectangleShape2D_nngtn")
+
+[node name="TrainStopTwo" type="Node2D" parent="PartEight/TrainStops"]
+position = Vector2(68, 12)
+
+[node name="Area2D" type="Area2D" parent="PartEight/TrainStops/TrainStopTwo" groups=["train_stop"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEight/TrainStops/TrainStopTwo/Area2D"]
+shape = SubResource("RectangleShape2D_nngtn")
 
 [connection signal="area_entered" from="PartFour/RotatingTurbine/Area2D" to="PartFour/RotatingTurbine/PlayerCollision" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartFour/Key/Area2D" to="PartFour/Key" method="_on_area_2d_area_entered"]
