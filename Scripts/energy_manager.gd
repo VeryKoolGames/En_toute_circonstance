@@ -2,6 +2,7 @@ extends Node
 
 @onready var energy_timer: Timer = $Timer
 @onready var charging_timer: Timer = $ChargingTimer
+@onready var charging_sound: AudioStreamPlayer2D = $ChargeUpSound
 @export var energy_progress_bar: ProgressBar
 @export var total_energy_timer: FloatValue
 
@@ -17,13 +18,17 @@ func _physics_process(delta: float) -> void:
 	if not energy_timer.is_stopped():
 		energy_progress_bar.value = energy_timer.time_left
 	else:
-		energy_progress_bar.value += (charging_timer.wait_time - charging_timer.time_left) * 1.3
+		energy_progress_bar.value += (charging_timer.wait_time - charging_timer.time_left)
+		if energy_progress_bar.value >= energy_progress_bar.max_value:
+			charging_sound.playing = false
 
 func _start_charging():
+	charging_sound.playing = true
 	energy_timer.stop()
 	charging_timer.start(energy_timer.time_left)
 
 func _start_using_energy():
+	charging_sound.playing = false
 	energy_timer.start(energy_progress_bar.max_value)
 	charging_timer.stop()
 

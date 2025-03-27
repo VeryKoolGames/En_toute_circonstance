@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvr7dj5uotcm2"]
+
+[ext_resource type="Script" uid="uid://d18pnsaiq17ru" path="res://Scenes/mine_manager.gd" id="1_mygvu"]
+[ext_resource type="Texture2D" uid="uid://bmb6im1ppcncx" path="res://Sprites/mine.png" id="1_qoe3o"]
+[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="3_o84ae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o84ae"]
+size = Vector2(4, 4)
+
+[node name="Mine" type="Node2D"]
+script = ExtResource("1_mygvu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qoe3o")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_o84ae")
+
+[node name="PlayerCollision" type="Node" parent="."]
+script = ExtResource("3_o84ae")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[connection signal="area_entered" from="Area2D" to="PlayerCollision" method="_on_area_2d_area_entered"]

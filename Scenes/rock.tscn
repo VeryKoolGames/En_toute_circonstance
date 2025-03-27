@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4gx5skpixj84"]
+[gd_scene load_steps=6 format=3 uid="uid://c4gx5skpixj84"]
 
 [ext_resource type="Texture2D" uid="uid://d10br3cy13ec" path="res://Sprites/Projectile1.png" id="1_5mkji"]
+[ext_resource type="Script" uid="uid://dafm0030xf5f8" path="res://Scenes/rock.gd" id="1_vd8au"]
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="2_5mkji"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wqkje"]
@@ -12,6 +13,7 @@ radius = 4.0
 [node name="Rock" type="RigidBody2D"]
 mass = 0.2
 gravity_scale = 0.1
+script = ExtResource("1_vd8au")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_5mkji")

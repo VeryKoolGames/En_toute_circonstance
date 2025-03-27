@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://uj3ff555h3ge"]
+
+[ext_resource type="Texture2D" uid="uid://45e831gadbji" path="res://Sprites/porte.png" id="1_p0e35"]
+[ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="2_fahql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa6b8"]
+size = Vector2(8, 13)
+
+[node name="Door" type="Node2D"]
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+process_mode = 3
+position = Vector2(0, 8)
+texture = ExtResource("1_p0e35")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_pa6b8")
+
+[node name="PlayerCollision" type="Node" parent="."]
+script = ExtResource("2_fahql")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[connection signal="area_entered" from="Area2D" to="PlayerCollision" method="_on_area_2d_area_entered"]

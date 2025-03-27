@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=37 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -6,17 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://dvnlk3yoqhkr6" path="res://Scenes/truck.tscn" id="4_0f350"]
 [ext_resource type="Script" uid="uid://fmvq1awl4bhh" path="res://Scripts/rock_spawner.gd" id="6_8c0lf"]
 [ext_resource type="PackedScene" uid="uid://c4gx5skpixj84" path="res://Scenes/rock.tscn" id="7_754fn"]
-[ext_resource type="Texture2D" uid="uid://45e831gadbji" path="res://Sprites/porte.png" id="7_bvt00"]
 [ext_resource type="Script" uid="uid://by13da2fsnlsd" path="res://Scripts/rotating_turbine.gd" id="8_oqgf2"]
 [ext_resource type="Texture2D" uid="uid://bkuhqgkaa1cdu" path="res://Sprites/Turbine1.png" id="9_qxfql"]
+[ext_resource type="PackedScene" uid="uid://bd66ccn8jutf4" path="res://Scenes/key.tscn" id="10_6y3s5"]
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="10_oqgf2"]
-[ext_resource type="Script" uid="uid://rnvrcuq05h03" path="res://Scripts/key.gd" id="11_ha31o"]
-[ext_resource type="Texture2D" uid="uid://tjdif8xrxykt" path="res://Sprites/clef.png" id="11_pa6b8"]
+[ext_resource type="PackedScene" uid="uid://bwmkw85qi2ov1" path="res://Scenes/checkpoint.tscn" id="12_u0did"]
 [ext_resource type="PackedScene" uid="uid://b6xexbvafpety" path="res://Scenes/plateforme.tscn" id="13_pa6b8"]
+[ext_resource type="Script" uid="uid://bj33q7hsaqxfa" path="res://Scenes/destroyer.gd" id="13_u0did"]
+[ext_resource type="PackedScene" uid="uid://uj3ff555h3ge" path="res://Scenes/door.tscn" id="14_53r2q"]
 [ext_resource type="PackedScene" uid="uid://bp887lg0soger" path="res://Scenes/pieton.tscn" id="14_c7le1"]
 [ext_resource type="PackedScene" uid="uid://delyuydsqyaqt" path="res://Scenes/train.tscn" id="14_crh0w"]
 [ext_resource type="Script" uid="uid://jyprx7rn35qj" path="res://Scenes/pieton_spawner.gd" id="15_2klc5"]
 [ext_resource type="Script" uid="uid://dohanfm2iscjn" path="res://Scenes/pieton_waiting_area_manager.gd" id="16_nngtn"]
+[ext_resource type="Texture2D" uid="uid://dg81f6hkx0y5" path="res://Sprites/Turnine2.png" id="18_vofx3"]
+[ext_resource type="Texture2D" uid="uid://vea4xtchh2tq" path="res://Sprites/Projectile2.png" id="19_00k4y"]
+[ext_resource type="Script" uid="uid://cgtkij2ebcdho" path="res://Scenes/projectile_movement.gd" id="19_3a44l"]
+[ext_resource type="AudioStream" uid="uid://cjwbyolfkeqf6" path="res://Sounds/crowd_noise.wav" id="19_53r2q"]
+[ext_resource type="Script" uid="uid://dgje751gg5ixu" path="res://Scenes/gravity_manager.gd" id="21_0cmrb"]
+[ext_resource type="PackedScene" uid="uid://cvr7dj5uotcm2" path="res://Scenes/mine.tscn" id="22_gf56v"]
+[ext_resource type="Texture2D" uid="uid://f36fla36wys" path="res://Sprites/enfant.png" id="23_6y3s5"]
+[ext_resource type="Texture2D" uid="uid://b2eohafi5d1vn" path="res://Sprites/HELP.png" id="24_u0did"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crh0w"]
 size = Vector2(15, 10)
@@ -31,17 +40,24 @@ b = Vector2(-119, 56)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ha31o"]
 size = Vector2(38, 2)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qxfql"]
-radius = 4.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa6b8"]
-size = Vector2(8, 13)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y3s5"]
+size = Vector2(40, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
 size = Vector2(20, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nngtn"]
 size = Vector2(4, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00k4y"]
+size = Vector2(24, 2)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3a44l"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnhnk"]
+size = Vector2(14, 14)
 
 [node name="Level" type="Node2D"]
 
@@ -51,16 +67,16 @@ texture = ExtResource("1_tumq0")
 [node name="PartOne" type="Node2D" parent="."]
 
 [node name="Tree" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(-24, -106)
+position = Vector2(-21, -107)
 
 [node name="Tree2" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(-11, -84)
+position = Vector2(-5, -85)
 
 [node name="Tree3" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(12, -104)
+position = Vector2(4, -106)
 
 [node name="Tree4" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(31, -86)
+position = Vector2(29, -84)
 
 [node name="Tree5" parent="PartOne" instance=ExtResource("2_k5f4k")]
 position = Vector2(49, -103)
@@ -150,19 +166,9 @@ shape = SubResource("RectangleShape2D_ha31o")
 script = ExtResource("10_oqgf2")
 metadata/_custom_type_script = "uid://cqoo6850gcfqh"
 
-[node name="Key" type="Node2D" parent="PartFour" node_paths=PackedStringArray("door")]
+[node name="Key" parent="PartFour" node_paths=PackedStringArray("door") instance=ExtResource("10_6y3s5")]
 position = Vector2(0, -38)
-script = ExtResource("11_ha31o")
 door = NodePath("../DoorView/Door")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="PartFour/Key"]
-texture = ExtResource("11_pa6b8")
-
-[node name="Area2D" type="Area2D" parent="PartFour/Key"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/Key/Area2D"]
-shape = SubResource("CircleShape2D_qxfql")
 
 [node name="DoorView" type="Control" parent="PartFour"]
 clip_contents = true
@@ -172,22 +178,50 @@ offset_top = -8.0
 offset_right = 46.0
 offset_bottom = 7.0
 
-[node name="Door" type="Node2D" parent="PartFour/DoorView"]
+[node name="Door" parent="PartFour/DoorView" instance=ExtResource("14_53r2q")]
 position = Vector2(23, 0.5)
 
-[node name="DoorSprite" type="Sprite2D" parent="PartFour/DoorView/Door"]
-process_mode = 3
-position = Vector2(0, 8)
-texture = ExtResource("7_bvt00")
-
-[node name="Area2D" type="Area2D" parent="PartFour/DoorView/Door"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/DoorView/Door/Area2D"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_pa6b8")
+[node name="Checkpoint" parent="PartFour" instance=ExtResource("12_u0did")]
+position = Vector2(-38, -29)
 
 [node name="PartFive" type="Node2D" parent="."]
 position = Vector2(-69, 27)
+
+[node name="RockView" type="Control" parent="PartFive"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -24.0
+offset_top = -45.0
+offset_right = 25.0
+offset_bottom = 43.0
+
+[node name="RockSpawner2" type="Node2D" parent="PartFive/RockView"]
+position = Vector2(31, -5)
+script = ExtResource("6_8c0lf")
+rock_scene = ExtResource("7_754fn")
+
+[node name="Timer" type="Timer" parent="PartFive/RockView/RockSpawner2"]
+wait_time = 1.5
+
+[node name="RockSpawner3" type="Node2D" parent="PartFive/RockView"]
+position = Vector2(10, -6)
+script = ExtResource("6_8c0lf")
+rock_scene = ExtResource("7_754fn")
+initial_delay = 0.5
+
+[node name="Timer" type="Timer" parent="PartFive/RockView/RockSpawner3"]
+wait_time = 1.5
+
+[node name="Destroyer" type="Node2D" parent="PartFive"]
+position = Vector2(0, 48)
+script = ExtResource("13_u0did")
+
+[node name="Area2D" type="Area2D" parent="PartFive/Destroyer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartFive/Destroyer/Area2D"]
+position = Vector2(2, 3)
+shape = SubResource("RectangleShape2D_6y3s5")
 
 [node name="PartSix" type="Node2D" parent="."]
 
@@ -211,7 +245,7 @@ offset_right = -15.0
 offset_bottom = 15.0
 
 [node name="PietonSpawner" type="Node2D" parent="PartSeven" node_paths=PackedStringArray("parent")]
-position = Vector2(-19, -20)
+position = Vector2(-19, -27)
 script = ExtResource("15_2klc5")
 parent = NodePath("../PietonView")
 pieton_scene = ExtResource("14_c7le1")
@@ -219,7 +253,7 @@ pieton_scene = ExtResource("14_c7le1")
 [node name="Timer" type="Timer" parent="PartSeven/PietonSpawner"]
 
 [node name="PietonSpawner2" type="Node2D" parent="PartSeven" node_paths=PackedStringArray("parent")]
-position = Vector2(-49, -20)
+position = Vector2(-49, -27)
 script = ExtResource("15_2klc5")
 parent = NodePath("../PietonView")
 pieton_scene = ExtResource("14_c7le1")
@@ -227,7 +261,7 @@ pieton_scene = ExtResource("14_c7le1")
 [node name="Timer" type="Timer" parent="PartSeven/PietonSpawner2"]
 
 [node name="PietonSpawner3" type="Node2D" parent="PartSeven" node_paths=PackedStringArray("parent")]
-position = Vector2(-72, -20)
+position = Vector2(-72, -27)
 script = ExtResource("15_2klc5")
 parent = NodePath("../PietonView")
 pieton_scene = ExtResource("14_c7le1")
@@ -242,6 +276,11 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_2klc5")
 
 [node name="Timer" type="Timer" parent="PartSeven/WaitingArea"]
+wait_time = 3.0
+one_shot = true
+
+[node name="CrowNoiseSound" type="AudioStreamPlayer2D" parent="PartSeven/WaitingArea"]
+stream = ExtResource("19_53r2q")
 
 [node name="PartEight" type="Node2D" parent="."]
 position = Vector2(-22, 106)
@@ -252,7 +291,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = -13.0
 offset_top = 4.0
-offset_right = 115.0
+offset_right = 96.0
 offset_bottom = 21.0
 
 [node name="Train" parent="PartEight/TrainView" instance=ExtResource("14_crh0w")]
@@ -291,11 +330,155 @@ position = Vector2(54, -3)
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_c7le1")
 
+[node name="PartNine" type="Node2D" parent="."]
+position = Vector2(4, 80)
+
+[node name="Turbine" type="Node2D" parent="PartNine"]
+position = Vector2(22, 0)
+rotation = -0.799361
+script = ExtResource("8_oqgf2")
+
+[node name="Sprite2D" type="Sprite2D" parent="PartNine/Turbine"]
+texture = ExtResource("18_vofx3")
+
+[node name="PlayerCollision" type="Node" parent="PartNine/Turbine"]
+script = ExtResource("10_oqgf2")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[node name="Area2D" type="Area2D" parent="PartNine/Turbine"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartNine/Turbine/Area2D"]
+shape = SubResource("RectangleShape2D_00k4y")
+
+[node name="Turbine2" type="Node2D" parent="PartNine"]
+position = Vector2(53, 0)
+script = ExtResource("8_oqgf2")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="PartNine/Turbine2"]
+texture = ExtResource("18_vofx3")
+
+[node name="PlayerCollision" type="Node" parent="PartNine/Turbine2"]
+script = ExtResource("10_oqgf2")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[node name="Area2D" type="Area2D" parent="PartNine/Turbine2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartNine/Turbine2/Area2D"]
+shape = SubResource("RectangleShape2D_00k4y")
+
+[node name="Turbine3" type="Node2D" parent="PartNine"]
+position = Vector2(84, 0)
+rotation = 0.420624
+script = ExtResource("8_oqgf2")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="PartNine/Turbine3"]
+texture = ExtResource("18_vofx3")
+
+[node name="PlayerCollision" type="Node" parent="PartNine/Turbine3"]
+script = ExtResource("10_oqgf2")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[node name="Area2D" type="Area2D" parent="PartNine/Turbine3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartNine/Turbine3/Area2D"]
+shape = SubResource("RectangleShape2D_00k4y")
+
+[node name="PartTen" type="Node2D" parent="."]
+position = Vector2(128, 120)
+
+[node name="Control" type="Control" parent="PartTen"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -28.0
+offset_top = -7.0
+offset_right = 28.0
+offset_bottom = 8.0
+
+[node name="Projectile" type="Node2D" parent="PartTen/Control"]
+position = Vector2(60, 8)
+script = ExtResource("19_3a44l")
+
+[node name="PlayerCollision" type="Node" parent="PartTen/Control/Projectile"]
+script = ExtResource("10_oqgf2")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[node name="Area2D" type="Area2D" parent="PartTen/Control/Projectile"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartTen/Control/Projectile/Area2D"]
+shape = SubResource("CapsuleShape2D_3a44l")
+
+[node name="Sprite2D" type="Sprite2D" parent="PartTen/Control/Projectile"]
+texture = ExtResource("19_00k4y")
+
+[node name="Timer" type="Timer" parent="PartTen/Control/Projectile"]
+wait_time = 3.0
+
+[node name="PartGravity" type="Node2D" parent="."]
+position = Vector2(-153, -60)
+
+[node name="GravityManager" type="Node2D" parent="PartGravity"]
+script = ExtResource("21_0cmrb")
+
+[node name="ZoneEnterArea" type="Area2D" parent="PartGravity"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartGravity/ZoneEnterArea"]
+position = Vector2(-3, -1)
+shape = SubResource("RectangleShape2D_pnhnk")
+
+[node name="ZoneExitArea" type="Area2D" parent="PartGravity"]
+position = Vector2(2, 82)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartGravity/ZoneExitArea"]
+position = Vector2(-3, -1)
+shape = SubResource("RectangleShape2D_pnhnk")
+
+[node name="PartEleven" type="Node2D" parent="."]
+position = Vector2(119, 42)
+
+[node name="Mine" parent="PartEleven" instance=ExtResource("22_gf56v")]
+position = Vector2(-8, 8)
+
+[node name="Mine3" parent="PartEleven" instance=ExtResource("22_gf56v")]
+position = Vector2(11, -13)
+
+[node name="Mine4" parent="PartEleven" instance=ExtResource("22_gf56v")]
+position = Vector2(1, 45)
+
+[node name="Mine5" parent="PartEleven" instance=ExtResource("22_gf56v")]
+position = Vector2(11, 51)
+
+[node name="Mine7" parent="PartEleven" instance=ExtResource("22_gf56v")]
+position = Vector2(-1, 23)
+
+[node name="Mine2" parent="PartEleven" instance=ExtResource("22_gf56v")]
+position = Vector2(15, 10)
+
+[node name="PartEnding" type="Node2D" parent="."]
+position = Vector2(197, 96)
+
+[node name="ChildSprite" type="Sprite2D" parent="PartEnding"]
+position = Vector2(0, 17)
+texture = ExtResource("23_6y3s5")
+
+[node name="HelpSprite" type="Sprite2D" parent="PartEnding"]
+position = Vector2(-16, -3)
+texture = ExtResource("24_u0did")
+
 [connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneEnterArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
 [connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneExitArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
 [connection signal="area_entered" from="PartFour/RotatingTurbine/Area2D" to="PartFour/RotatingTurbine/PlayerCollision" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="PartFour/Key/Area2D" to="PartFour/Key" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartFive/Destroyer/Area2D" to="PartFive/Destroyer" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartSeven/WaitingArea" to="PartSeven/WaitingArea" method="_on_area_entered"]
 [connection signal="area_exited" from="PartSeven/WaitingArea" to="PartSeven/WaitingArea" method="_on_area_exited"]
 [connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D" to="PartEight/TrainView/Train" method="_on_zone_entered"]
 [connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D2" to="PartEight/TrainView/Train" method="_on_zone_exit_entered"]
+[connection signal="area_entered" from="PartNine/Turbine/Area2D" to="PartNine/Turbine/PlayerCollision" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartNine/Turbine2/Area2D" to="PartNine/Turbine2/PlayerCollision" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartNine/Turbine3/Area2D" to="PartNine/Turbine3/PlayerCollision" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartTen/Control/Projectile/Area2D" to="PartTen/Control/Projectile/PlayerCollision" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartGravity/ZoneEnterArea" to="PartGravity/GravityManager" method="_on_zone_enter_area_entered"]
+[connection signal="area_entered" from="PartGravity/ZoneExitArea" to="PartGravity/GravityManager" method="_on_zone_exit_area_entered"]
