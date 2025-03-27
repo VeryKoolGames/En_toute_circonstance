@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=41 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cvr7dj5uotcm2" path="res://Scenes/mine.tscn" id="22_gf56v"]
 [ext_resource type="Texture2D" uid="uid://f36fla36wys" path="res://Sprites/enfant.png" id="23_6y3s5"]
 [ext_resource type="Texture2D" uid="uid://b2eohafi5d1vn" path="res://Sprites/HELP.png" id="24_u0did"]
+[ext_resource type="Script" uid="uid://n8qgcllf646p" path="res://Scenes/ending_manager.gd" id="28_luodc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crh0w"]
 size = Vector2(15, 10)
@@ -59,6 +60,12 @@ height = 10.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnhnk"]
 size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cgv8"]
+size = Vector2(20, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_luodc"]
+radius = 11.0
 
 [node name="Level" type="Node2D"]
 
@@ -485,6 +492,21 @@ texture = ExtResource("23_6y3s5")
 position = Vector2(-16, -3)
 texture = ExtResource("24_u0did")
 
+[node name="EndingManager" type="Node" parent="PartEnding"]
+script = ExtResource("28_luodc")
+
+[node name="ZoneEnterArea" type="Area2D" parent="PartEnding"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEnding/ZoneEnterArea"]
+position = Vector2(0, -23.5)
+shape = SubResource("RectangleShape2D_1cgv8")
+
+[node name="Area2D" type="Area2D" parent="PartEnding"]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEnding/Area2D"]
+shape = SubResource("CircleShape2D_luodc")
+
 [connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneEnterArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
 [connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneExitArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
 [connection signal="area_entered" from="PartFour/RotatingTurbine/Area2D" to="PartFour/RotatingTurbine/PlayerCollision" method="_on_area_2d_area_entered"]
@@ -499,3 +521,4 @@ texture = ExtResource("24_u0did")
 [connection signal="area_entered" from="PartTen/Control/Projectile/Area2D" to="PartTen/Control/Projectile/PlayerCollision" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartGravity/ZoneEnterArea" to="PartGravity/GravityManager" method="_on_zone_enter_area_entered"]
 [connection signal="area_entered" from="PartGravity/ZoneExitArea" to="PartGravity/GravityManager" method="_on_zone_exit_area_entered"]
+[connection signal="area_entered" from="PartEnding/ZoneEnterArea" to="PartEnding/EndingManager" method="_on_zone_enter_area_entered"]
