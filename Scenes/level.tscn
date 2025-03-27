@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=38 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -12,7 +12,9 @@
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="10_oqgf2"]
 [ext_resource type="Script" uid="uid://rnvrcuq05h03" path="res://Scripts/key.gd" id="11_ha31o"]
 [ext_resource type="Texture2D" uid="uid://tjdif8xrxykt" path="res://Sprites/clef.png" id="11_pa6b8"]
+[ext_resource type="AudioStream" uid="uid://cxh16eae7f8ul" path="res://Sounds/key.wav" id="12_6y3s5"]
 [ext_resource type="PackedScene" uid="uid://b6xexbvafpety" path="res://Scenes/plateforme.tscn" id="13_pa6b8"]
+[ext_resource type="AudioStream" uid="uid://e32a0u8bhxlj" path="res://Sounds/stone_door.wav" id="13_u0did"]
 [ext_resource type="PackedScene" uid="uid://bp887lg0soger" path="res://Scenes/pieton.tscn" id="14_c7le1"]
 [ext_resource type="PackedScene" uid="uid://delyuydsqyaqt" path="res://Scenes/train.tscn" id="14_crh0w"]
 [ext_resource type="Script" uid="uid://jyprx7rn35qj" path="res://Scenes/pieton_spawner.gd" id="15_2klc5"]
@@ -68,16 +70,16 @@ texture = ExtResource("1_tumq0")
 [node name="PartOne" type="Node2D" parent="."]
 
 [node name="Tree" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(-24, -106)
+position = Vector2(-21, -107)
 
 [node name="Tree2" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(-11, -84)
+position = Vector2(-5, -85)
 
 [node name="Tree3" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(12, -104)
+position = Vector2(4, -106)
 
 [node name="Tree4" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(31, -86)
+position = Vector2(29, -84)
 
 [node name="Tree5" parent="PartOne" instance=ExtResource("2_k5f4k")]
 position = Vector2(49, -103)
@@ -180,6 +182,12 @@ texture = ExtResource("11_pa6b8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PartFour/Key/Area2D"]
 shape = SubResource("CircleShape2D_qxfql")
+
+[node name="KeyPickUpSound" type="AudioStreamPlayer2D" parent="PartFour/Key"]
+stream = ExtResource("12_6y3s5")
+
+[node name="DoorOpeningSound" type="AudioStreamPlayer2D" parent="PartFour/Key"]
+stream = ExtResource("13_u0did")
 
 [node name="DoorView" type="Control" parent="PartFour"]
 clip_contents = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://kb0vbs3beqtw"]
+[gd_scene load_steps=6 format=3 uid="uid://kb0vbs3beqtw"]
 
 [ext_resource type="Script" uid="uid://bx3pmkpnp83q7" path="res://Scripts/energy_manager.gd" id="1_gek4i"]
 [ext_resource type="Script" uid="uid://ovqou1pyqpn4" path="res://Scripts/money_manager.gd" id="2_bw2rt"]
 [ext_resource type="Resource" uid="uid://7nqn1q8a0xa7" path="res://Resources/energy_timer_value.tres" id="2_xjnnq"]
+[ext_resource type="AudioStream" uid="uid://dwd3nwpbh61wv" path="res://Sounds/charging_sound.wav" id="3_gjn1n"]
 [ext_resource type="Resource" uid="uid://7qk1pwuohekv" path="res://Resources/car_value.tres" id="4_x63ue"]
 
 [node name="GameUI" type="Control"]
@@ -41,6 +42,11 @@ total_energy_timer = ExtResource("2_xjnnq")
 [node name="Timer" type="Timer" parent="EnergyManager"]
 
 [node name="ChargingTimer" type="Timer" parent="EnergyManager"]
+
+[node name="ChargeUpSound" type="AudioStreamPlayer2D" parent="EnergyManager"]
+stream = ExtResource("3_gjn1n")
+volume_db = -18.435
+pitch_scale = 1.29
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("value_label")]
 script = ExtResource("2_bw2rt")

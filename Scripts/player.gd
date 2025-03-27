@@ -75,6 +75,8 @@ func on_gravity_zone_entered():
 	gravity_zone_active = true
 	
 func on_gravity_zone_exited():
+	if not gravity_zone_active:
+		return
 	gravity_zone_active = false
 
 # PLATEFORME LOGIC
