@@ -5,8 +5,12 @@ extends Node2D
 @onready var speech_sound: AudioStreamPlayer2D = $Sounds/SpeechSound
 @onready var wake_up_sound: AudioStreamPlayer2D = $Sounds/WakeUpSound
 @onready var angry_sound: AudioStreamPlayer2D = $Sounds/AngryDadSound
+@onready var music: AudioStreamPlayer2D = $Sounds/MenuMusic
+@onready var hover_sound: AudioStreamPlayer2D = $Sounds/HoverSound
 @onready var fade_overlay: ColorRect = $StartMenuUI/ColorRect
 @onready var phone_text: Label = $StartMenuUI/Label
+@onready var arrow1: TextureRect = $StartMenuUI/commencer/arrow_1
+@onready var arrow2: TextureRect = $StartMenuUI/quitter/arrow_2
 
 @export var texts: Array[String] = [
 	"Allo papa ? Je suis completement cuite a preverenge. J'ai du dormir chez Julie et il me manque une chaussure. Tu peux venir me chercher stp ?",
@@ -15,8 +19,10 @@ extends Node2D
 
 func on_start_button_up():
 	var tween = create_tween()
+	var musictween = create_tween()
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(fade_overlay, "color:a", 1.0, 3)
+	tween.tween_property(fade_overlay, "color:a", 1.0, 2)
+	tween.tween_property(music, "volume_db", -80, 2)
 	await tween.finished
 	snoring_sound.playing = true
 	await get_tree().create_timer(8).timeout
@@ -52,3 +58,21 @@ func write_text():
 		buffer += letter
 		phone_text.text = buffer
 		await get_tree().create_timer(0.05).timeout
+
+
+func _on_commencer_mouse_entered() -> void:
+	hover_sound.playing = true
+	arrow1.modulate = Color("#ffa300")
+
+
+func _on_quitter_mouse_entered() -> void:
+	hover_sound.playing = true
+	arrow2.modulate = Color("#ffa300")
+
+
+func _on_commencer_mouse_exited() -> void:
+	arrow1.modulate = Color("#ffffff")
+
+
+func _on_quitter_mouse_exited() -> void:
+	arrow2.modulate = Color("#ffffff")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bio0dxmqbfiuk"]
+
+[ext_resource type="Texture2D" uid="uid://h0nuawfd1l38" path="res://Sprites/Electricité.png" id="1_4fwub"]
+
+[sub_resource type="Curve" id="Curve_s63ww"]
+_data = [Vector2(0.00491803, 1), 0.0, 0.0, 0, 0, Vector2(0.901639, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="AntiGravitéParticules" type="CPUParticles2D"]
+amount = 4
+texture = ExtResource("1_4fwub")
+lifetime = 1.84
+emission_shape = 3
+emission_rect_extents = Vector2(15, 15)
+gravity = Vector2(0, -3.94)
+scale_amount_curve = SubResource("Curve_s63ww")

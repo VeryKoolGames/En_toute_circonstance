@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxwehdj7nh162"]
+
+[ext_resource type="PackedScene" uid="uid://dldcwmwe2e68s" path="res://Scenes/level.tscn" id="1_2tir0"]
+[ext_resource type="PackedScene" uid="uid://v30fe1sniv4s" path="res://Scenes/player.tscn" id="2_ye620"]
+[ext_resource type="PackedScene" uid="uid://kb0vbs3beqtw" path="res://Scenes/game_ui.tscn" id="3_5kulp"]
+[ext_resource type="AudioStream" uid="uid://dr5uxa7lwfl6x" path="res://Sounds/main_music.mp3" id="4_iodxk"]
+[ext_resource type="PackedScene" uid="uid://b24a3oyjqgh5c" path="res://Scenes/anti_gravité_particules.tscn" id="5_ye620"]
+[ext_resource type="PackedScene" uid="uid://bio0dxmqbfiuk" path="res://Scenes/recharge_particules.tscn" id="6_5kulp"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Level" parent="." instance=ExtResource("1_2tir0")]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Player" parent="." instance=ExtResource("2_ye620")]
+position = Vector2(-212, -96)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("3_5kulp")]
+process_mode = 4
+
+[node name="MainMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_iodxk")
+volume_db = -15.0
+autoplay = true
+
+[node name="AntiGravitéParticules" parent="." instance=ExtResource("5_ye620")]
+position = Vector2(-194, -7)
+
+[node name="AntiGravitéParticules2" parent="." instance=ExtResource("6_5kulp")]
+position = Vector2(-79, 106)
+
+[node name="AntiGravitéParticules2" parent="AntiGravitéParticules2" instance=ExtResource("6_5kulp")]
+position = Vector2(202, -129)
