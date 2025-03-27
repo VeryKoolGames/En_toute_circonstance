@@ -8,11 +8,6 @@ extends Node2D
 @onready var fade_overlay: ColorRect = $StartMenuUI/ColorRect
 @onready var phone_text: Label = $StartMenuUI/Label
 
-@export var texts: Array[String] = [
-	"Allo papa ? Je suis completement cuite a preverenge. J'ai du dormir chez Julie et il me manque une chaussure. Tu peux venir me chercher stp ?",
-	"Allo papa ? Je suis completement cuite a preverenge. J'ai du dormir chez Julie et il me manque une chaussure. Tu peux venir me chercher stp ?",
-]
-
 func on_start_button_up():
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -46,7 +41,8 @@ func on_exit_button_up():
 	get_tree().quit()
 
 func write_text():
-	var random_text: String = texts[randi_range(0, texts.size() - 1)]
+	var random_text: String = PhoneTexts.texts[randi_range(0, PhoneTexts.texts.size() - 1)]
+	PhoneTexts.texts.erase(random_text)
 	var buffer := ""
 	for letter in random_text:
 		buffer += letter
