@@ -44,8 +44,8 @@ func _process(delta: float) -> void:
 
 	if is_inside_image(image_pos):
 		var pixel_color = level_image.get_pixelv(image_pos)
-		if is_on_death_color(pixel_color) and not is_player_safe:
-			Events.on_player_died.emit()
+		#if is_on_death_color(pixel_color) and not is_player_safe:
+			#Events.on_player_died.emit()
 		if should_follow_mouse:
 			var target_position = get_global_mouse_position()
 			if gravity_zone_active:

@@ -1,8 +1,10 @@
 extends Node2D
 
 var should_move: bool
-@onready var timer: Timer = $Timer
+var should_play_sound: bool
 var spawn_position: Vector2
+@onready var timer: Timer = $Timer
+@onready var door_slam_sound: AudioStreamPlayer2D = $DoorSlamSound
 @export var initial_delay: float
 
 func _ready() -> void:
@@ -18,13 +20,20 @@ func _process(delta: float) -> void:
 		position.x += delta * 10
 
 func reset_door_position():
-	print(should_move)
 	timer.stop()
+	if should_play_sound:
+		door_slam_sound.play()
 	should_move = false
-	print(should_move)
 	var tween = create_tween()
 	tween.tween_property(self, "position", spawn_position, 0.1)
 	await get_tree().create_timer(2).timeout
 	should_move = true
-	print(should_move)
 	timer.start()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	should_play_sound = true
+
+
+func _on_area_2d_area_exit(area: Area2D) -> void:
+	should_play_sound = false

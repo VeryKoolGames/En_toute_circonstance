@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cxwehdj7nh162"]
 
-[ext_resource type="PackedScene" uid="uid://dldcwmwe2e68s" path="res://Scenes/level.tscn" id="1_2tir0"]
+[ext_resource type="PackedScene" uid="uid://dldcwmwe2e68s" path="res://level.tscn" id="1_2tir0"]
 [ext_resource type="PackedScene" uid="uid://v30fe1sniv4s" path="res://Scenes/player.tscn" id="2_ye620"]
 [ext_resource type="PackedScene" uid="uid://kb0vbs3beqtw" path="res://Scenes/game_ui.tscn" id="3_5kulp"]
 [ext_resource type="AudioStream" uid="uid://dr5uxa7lwfl6x" path="res://Sounds/main_music.mp3" id="4_iodxk"]
 [ext_resource type="PackedScene" uid="uid://b24a3oyjqgh5c" path="res://Scenes/anti_gravité_particules.tscn" id="5_ye620"]
-[ext_resource type="PackedScene" uid="uid://bio0dxmqbfiuk" path="res://Scenes/recharge_particules.tscn" id="6_5kulp"]
+[ext_resource type="PackedScene" uid="uid://cjluekd64wnmx" path="res://Scenes/recharge_particules.tscn" id="6_5kulp"]
 
 [node name="Main" type="Node2D"]
 

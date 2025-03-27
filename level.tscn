@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=43 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cvr7dj5uotcm2" path="res://Scenes/mine.tscn" id="22_gf56v"]
 [ext_resource type="Texture2D" uid="uid://f36fla36wys" path="res://Sprites/enfant.png" id="23_6y3s5"]
 [ext_resource type="Texture2D" uid="uid://b2eohafi5d1vn" path="res://Sprites/HELP.png" id="24_u0did"]
+[ext_resource type="PackedScene" uid="uid://b24a3oyjqgh5c" path="res://Scenes/anti_gravité_particules.tscn" id="25_aoqsc"]
 [ext_resource type="Script" uid="uid://n8qgcllf646p" path="res://Scenes/ending_manager.gd" id="28_luodc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crh0w"]
@@ -47,6 +48,9 @@ size = Vector2(40, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2klc5"]
 size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoqsc"]
+size = Vector2(18, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nngtn"]
 size = Vector2(4, 6)
@@ -78,25 +82,25 @@ texture = ExtResource("1_tumq0")
 position = Vector2(-21, -107)
 
 [node name="Tree2" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(-5, -85)
+position = Vector2(-5, -77)
 
 [node name="Tree3" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(4, -106)
+position = Vector2(10, -106)
 
 [node name="Tree4" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(29, -84)
+position = Vector2(29, -83)
 
 [node name="Tree5" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(49, -103)
+position = Vector2(49, -104)
 
 [node name="Tree6" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(71, -77)
+position = Vector2(71, -88)
 
 [node name="Tree7" parent="PartOne" instance=ExtResource("2_k5f4k")]
 position = Vector2(84, -105)
 
 [node name="Tree8" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(109, -80)
+position = Vector2(105, -91)
 
 [node name="CharginZoneStart" parent="." instance=ExtResource("3_6phgx")]
 position = Vector2(-201, -95)
@@ -306,6 +310,12 @@ position = Vector2(9, 8)
 position = Vector2(9, 32)
 initial_delay = 2.0
 
+[node name="Area2D" type="Area2D" parent="PartSeven"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartSeven/Area2D"]
+position = Vector2(-98, 2)
+shape = SubResource("RectangleShape2D_aoqsc")
+
 [node name="PartEight" type="Node2D" parent="."]
 position = Vector2(-22, 106)
 
@@ -443,8 +453,9 @@ wait_time = 3.0
 [node name="PartGravity" type="Node2D" parent="."]
 position = Vector2(-153, -60)
 
-[node name="GravityManager" type="Node2D" parent="PartGravity"]
+[node name="GravityManager" type="Node2D" parent="PartGravity" node_paths=PackedStringArray("particle_gravity")]
 script = ExtResource("21_0cmrb")
+particle_gravity = NodePath("../GravityParticles")
 
 [node name="ZoneEnterArea" type="Area2D" parent="PartGravity"]
 
@@ -459,6 +470,10 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PartGravity/ZoneExitArea"]
 position = Vector2(-3, -1)
 shape = SubResource("RectangleShape2D_pnhnk")
+
+[node name="GravityParticles" parent="PartGravity" instance=ExtResource("25_aoqsc")]
+position = Vector2(-36, 55)
+emitting = false
 
 [node name="PartEleven" type="Node2D" parent="."]
 position = Vector2(119, 42)
@@ -513,6 +528,10 @@ shape = SubResource("CircleShape2D_luodc")
 [connection signal="area_entered" from="PartFive/Destroyer/Area2D" to="PartFive/Destroyer" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartSeven/WaitingArea" to="PartSeven/WaitingArea" method="_on_area_entered"]
 [connection signal="area_exited" from="PartSeven/WaitingArea" to="PartSeven/WaitingArea" method="_on_area_exited"]
+[connection signal="area_entered" from="PartSeven/Area2D" to="PartSeven/DoorView/DoorOne" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartSeven/Area2D" to="PartSeven/DoorView/DoorOne2" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D" to="PartSeven/DoorView/DoorOne" method="_on_area_2d_area_exit"]
+[connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D" to="PartSeven/DoorView/DoorOne2" method="_on_area_2d_area_exit"]
 [connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D" to="PartEight/TrainView/Train" method="_on_zone_entered"]
 [connection signal="area_entered" from="PartEight/PlayerZoneDetection/Area2D2" to="PartEight/TrainView/Train" method="_on_zone_exit_entered"]
 [connection signal="area_entered" from="PartNine/Turbine/Area2D" to="PartNine/Turbine/PlayerCollision" method="_on_area_2d_area_entered"]

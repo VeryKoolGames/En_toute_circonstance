@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b301he6qmjddd"]
+[gd_scene load_steps=6 format=3 uid="uid://b301he6qmjddd"]
 
 [ext_resource type="Script" uid="uid://ci5k82t2reli8" path="res://Scenes/door_movement.gd" id="1_2umm3"]
 [ext_resource type="Texture2D" uid="uid://d0jydjyh8scub" path="res://Sprites/particules.png" id="2_jj42u"]
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="3_jj42u"]
+[ext_resource type="AudioStream" uid="uid://d2av7rxtgoc86" path="res://Sounds/door_slam.wav" id="4_lqouh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hcs0j"]
 size = Vector2(20, 4)
@@ -27,5 +28,9 @@ wait_time = 2.0
 [node name="PlayerCollision" type="Node" parent="."]
 script = ExtResource("3_jj42u")
 metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[node name="DoorSlamSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lqouh")
+volume_db = -5.0
 
 [connection signal="area_entered" from="Area2D" to="PlayerCollision" method="_on_area_2d_area_entered"]
