@@ -8,7 +8,6 @@ var level_image: Image
 var level_origin: Vector2
 var background_color := Color(0.1333, 0.1137, 0.3255, 1.0)
 var spawn_position: Vector2
-var original_spawn_position: Vector2
 @onready var car_sound: AudioStreamPlayer2D = $CarSound
 @onready var car_crash_sound: AudioStreamPlayer2D = $CarCrashSound
 @onready var car_pickup_sound: AudioStreamPlayer2D = $CarPickupSound
@@ -24,12 +23,10 @@ var plateform_count: int
 func _ready() -> void:
 	$Area2D.add_to_group("player")
 	spawn_position = global_position
-	original_spawn_position = global_position
 	_get_level_image_info()
 	Events.on_pause_menu_activated.connect(on_pause_menu_activated)
 	Events.on_ending_reached.connect(on_ending_reached)
 	Events.on_player_died.connect(on_player_death)
-	Events.on_energy_emptied.connect(reset_player_to_start_position)
 	Events.on_gravity_zone_entered.connect(on_gravity_zone_entered)
 	Events.on_gravity_zone_exited.connect(on_gravity_zone_exited)
 	Events.on_charging_zone_entered.connect(on_charging_zone_entered)
@@ -50,8 +47,8 @@ func _process(delta: float) -> void:
 
 	if is_inside_image(image_pos):
 		var pixel_color = level_image.get_pixelv(image_pos)
-		#if is_on_death_color(pixel_color) and not is_player_safe:
-			#Events.on_player_died.emit()
+		if is_on_death_color(pixel_color) and not is_player_safe:
+			Events.on_player_died.emit()
 		if should_follow_mouse:
 			var target_position = get_global_mouse_position()
 			if gravity_zone_active:
@@ -95,9 +92,6 @@ func on_player_death() -> void:
 	should_follow_mouse = false
 	global_position = spawn_position
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-func reset_player_to_start_position():
-	position = original_spawn_position
 
 func set_respawn_point(new_pos: Vector2) -> void:
 	spawn_position = new_pos

@@ -16,6 +16,13 @@ func _ready() -> void:
 	Events.on_ending_reached.connect(_stop_energy_logic)
 	energy_timer.timeout.connect(on_energy_empty)
 	_start_using_energy()
+	Events.on_player_died.connect(_fill_energy)
+
+func _fill_energy():
+	is_using_energy = true
+	energy_progress_bar.value = energy_progress_bar.max_value
+	charging_timer.stop()
+	energy_timer.start()
 
 func _physics_process(delta: float) -> void:
 	if is_using_energy:
@@ -40,7 +47,7 @@ func _start_using_energy():
 	charging_timer.stop()
 
 func on_energy_empty():
-	Events.on_energy_emptied.emit()
+	Events.on_player_died.emit()
 
 func _stop_energy_logic():
 	is_charging = false

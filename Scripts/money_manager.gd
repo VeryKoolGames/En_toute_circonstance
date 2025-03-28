@@ -9,4 +9,6 @@ func _ready() -> void:
 func _decrease_value() -> void:
 	var value_loss = randi_range(PlayerInfo.car_value / 8, PlayerInfo.car_value / 9)
 	PlayerInfo.car_value -= value_loss
+	if PlayerInfo.car_value < 0:
+		PlayerInfo.car_value = 0
 	value_label.text = "$ " + str(PlayerInfo.car_value)
