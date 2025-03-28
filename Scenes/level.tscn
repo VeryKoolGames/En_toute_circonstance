@@ -616,8 +616,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("32_sl4om")
 theme_override_font_sizes/font_size = 48
-text = "Merci a vous deux d'etre venu nous chercher dans les quatres coins du canton dans des etats pas possible (on cherche encore un dossier sur l'enfant prodigue...)
-Bon Anniversaire Dady, on t'aime <3"
+text = "Merci a vous deux d'etre venu nous chercher dans les quatres coins du canton dans des etats pas possible. 
+(On cherche encore un dossier sur l'enfant prodigue...)
+
+Bon Anniversaire Daddy, on t'aime <3"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -757,7 +759,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.133333, 0.113725, 0.32549, 0.658824)
+color = Color(0.133333, 0.113725, 0.32549, 0.796078)
 
 [node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu"]
 layout_mode = 1

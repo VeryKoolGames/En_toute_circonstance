@@ -43,8 +43,7 @@ func play_fade_out(color: String, time_to_wait: float):
 	await tween.finished
 
 func write_text():
-	var random_text: String = PhoneTexts.texts[randi_range(0, PhoneTexts.texts.size() - 1)]
-	PhoneTexts.texts.erase(random_text)
+	var random_text: String = PhoneTexts.get_random_text()
 	var buffer := ""
 	for letter in random_text:
 		buffer += letter
