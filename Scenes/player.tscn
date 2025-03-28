@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://v30fe1sniv4s"]
+[gd_scene load_steps=17 format=3 uid="uid://v30fe1sniv4s"]
 
 [ext_resource type="Script" uid="uid://7rc5duwx4rvx" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://do47sdvabelch" path="res://Sprites/Car.png" id="2_6t5aa"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d00l563g2c7wb" path="res://Scenes/explosion_particules.tscn" id="6_x3wgy"]
 [ext_resource type="Texture2D" uid="uid://88fn8urwxedi" path="res://Sprites/car_halo.png" id="7_3smsa"]
 [ext_resource type="AudioStream" uid="uid://c4hoph3kuvafc" path="res://Sounds/car_pickup.wav" id="8_8erm5"]
+[ext_resource type="Script" uid="uid://dmhodepuiav4p" path="res://Scenes/trail.gd" id="9_f1ek2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
 radius = 9.0
@@ -77,12 +78,21 @@ _data = {
 &"car_before_start_anim": SubResource("Animation_3smsa")
 }
 
+[sub_resource type="Curve" id="Curve_f1ek2"]
+_data = [Vector2(0.00141643, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0104988), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_f1ek2"]
+offsets = PackedFloat32Array(0.00636943, 0.996815, 1)
+colors = PackedColorArray(1, 1, 1, 0.647059, 0.392157, 0.678431, 0.678431, 0.85098, 1, 1, 1, 1)
+
 [node name="Player" type="Node2D"]
 script = ExtResource("1_cvnsp")
 
 [node name="RechargeParticles" parent="." instance=ExtResource("2_fkybt")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
 texture = ExtResource("2_6t5aa")
 
 [node name="MouseArea" type="Area2D" parent="."]
@@ -101,7 +111,7 @@ volume_db = -10.0
 
 [node name="CarCrashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_vgqql")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="ExplosionParticules" parent="." instance=ExtResource("6_x3wgy")]
 
@@ -117,6 +127,15 @@ autoplay = "car_before_start_anim"
 [node name="CarPickupSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_8erm5")
 volume_db = -10.0
+
+[node name="Trail" type="Line2D" parent="."]
+top_level = true
+z_index = 1
+width = 3.0
+width_curve = SubResource("Curve_f1ek2")
+gradient = SubResource("Gradient_f1ek2")
+script = ExtResource("9_f1ek2")
+max_points = 40
 
 [connection signal="input_event" from="MouseArea" to="." method="_on_area_2d_input_event"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

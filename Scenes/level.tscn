@@ -310,6 +310,7 @@ one_shot = true
 
 [node name="CrowNoiseSound" type="AudioStreamPlayer2D" parent="PartSeven/WaitingArea"]
 stream = ExtResource("19_53r2q")
+volume_db = 5.0
 
 [node name="DoorView" type="Control" parent="PartSeven"]
 clip_contents = true
@@ -616,10 +617,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("32_sl4om")
 theme_override_font_sizes/font_size = 48
-text = "Merci a vous deux d'etre venu nous chercher dans les quatres coins du canton dans des etats pas possible. 
-(On cherche encore un dossier sur l'enfant prodigue...)
+text = "Merci a vous deux d’etre venus nous chercher aux quatre coins du canton dans des etats pas possibles.
 
-Bon Anniversaire Daddy, on t'aime <3"
+Bon anniversaire, Daddy, on t’aime <3
+
+(On cherche encore un dossier sur l'enfant prodigue...)"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

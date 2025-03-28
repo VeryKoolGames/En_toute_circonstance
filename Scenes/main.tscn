@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://mg7i8p648oal"]
+[gd_scene load_steps=9 format=3 uid="uid://mg7i8p648oal"]
 
+[ext_resource type="Texture2D" uid="uid://d0jydjyh8scub" path="res://Sprites/particules.png" id="1_344ge"]
 [ext_resource type="PackedScene" uid="uid://dldcwmwe2e68s" path="res://Scenes/level.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://v30fe1sniv4s" path="res://Scenes/player.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://bnqr011iwalpg" path="res://Scenes/camera_shake.gd" id="2_6bp64"]
 [ext_resource type="PackedScene" uid="uid://kb0vbs3beqtw" path="res://Scenes/game_ui.tscn" id="3_8gbba"]
 [ext_resource type="AudioStream" uid="uid://cd4bmq7sfj0ng" path="res://Sounds/main_music.wav" id="4_21xkr"]
 [ext_resource type="Script" uid="uid://cq8fvvv5xheuh" path="res://Scripts/main_music.gd" id="5_kry3j"]
@@ -9,11 +11,18 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.133333, 0.113725, 0.32549, 1)
+position = Vector2(-20, -17.125)
+scale = Vector2(654, 598.25)
+texture = ExtResource("1_344ge")
+
 [node name="Level" parent="." instance=ExtResource("1_bo1nx")]
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
+script = ExtResource("2_6bp64")
 
 [node name="Player" parent="." instance=ExtResource("1_jjgbg")]
 position = Vector2(-206, -87)
