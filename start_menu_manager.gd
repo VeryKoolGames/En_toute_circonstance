@@ -14,7 +14,6 @@ extends Node2D
 
 func on_start_button_up():
 	var tween = create_tween()
-	var musictween = create_tween()
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(fade_overlay, "color:a", 1.0, 2)
 	tween.tween_property(music, "volume_db", -80, 2)
@@ -23,7 +22,7 @@ func on_start_button_up():
 	await get_tree().create_timer(8).timeout
 	snoring_sound.playing = false
 	phone_sound.playing = true
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(5).timeout
 	phone_sound.playing = false
 	wake_up_sound.playing = true
 	await get_tree().create_timer(4).timeout
@@ -42,9 +41,6 @@ func play_fade_out(color: String, time_to_wait: float):
 	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween.tween_property(fade_overlay, "color", Color(color), time_to_wait)
 	await tween.finished
-
-func on_exit_button_up():
-	get_tree().quit()
 
 func write_text():
 	var random_text: String = PhoneTexts.texts[randi_range(0, PhoneTexts.texts.size() - 1)]
@@ -72,3 +68,7 @@ func _on_commencer_mouse_exited() -> void:
 
 func _on_quitter_mouse_exited() -> void:
 	arrow2.modulate = Color("#ffffff")
+
+
+func _on_quitter_button_up() -> void:
+	get_tree().quit()

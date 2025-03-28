@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="en_toute_circonstance"
-run/main_scene="uid://mg7i8p648oal"
+run/main_scene="uid://be5d4bbhf42n7"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://Sprites/icon.svg"
 
 Events="*res://Scripts/game_events.gd"
 PhoneTexts="*res://phone_texts.gd"
+PlayerInfo="*res://player_info.gd"
 
 [display]
 

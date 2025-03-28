@@ -284,6 +284,6 @@ stream = ExtResource("12_7vuks")
 [connection signal="button_up" from="StartMenuUI/commencer" to="." method="on_start_button_up"]
 [connection signal="mouse_entered" from="StartMenuUI/commencer" to="." method="_on_commencer_mouse_entered"]
 [connection signal="mouse_exited" from="StartMenuUI/commencer" to="." method="_on_commencer_mouse_exited"]
-[connection signal="button_up" from="StartMenuUI/quitter" to="." method="on_start_button_up"]
+[connection signal="button_up" from="StartMenuUI/quitter" to="." method="_on_quitter_button_up"]
 [connection signal="mouse_entered" from="StartMenuUI/quitter" to="." method="_on_quitter_mouse_entered"]
 [connection signal="mouse_exited" from="StartMenuUI/quitter" to="." method="_on_quitter_mouse_exited"]

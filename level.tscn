@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=49 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -29,6 +29,13 @@
 [ext_resource type="Texture2D" uid="uid://b2eohafi5d1vn" path="res://Sprites/HELP.png" id="24_u0did"]
 [ext_resource type="PackedScene" uid="uid://b24a3oyjqgh5c" path="res://Scenes/anti_gravité_particules.tscn" id="25_aoqsc"]
 [ext_resource type="Script" uid="uid://n8qgcllf646p" path="res://Scenes/ending_manager.gd" id="28_luodc"]
+[ext_resource type="Script" uid="uid://do3t4wuc5yp2m" path="res://end_game_ui.gd" id="30_mleqk"]
+[ext_resource type="Texture2D" uid="uid://6kfm10e2r5yr" path="res://Sprites/Lettre.png" id="31_6btg4"]
+[ext_resource type="FontFile" uid="uid://dsvwo8iqoy5g6" path="res://Fonts/PxGrotesk-Screen.otf" id="32_sl4om"]
+[ext_resource type="Texture2D" uid="uid://bjug17do7yw2l" path="res://Sprites/arrow.png" id="33_dtg4e"]
+[ext_resource type="AudioStream" uid="uid://b0c2ewevlw4fn" path="res://Sounds/HoverSound.wav" id="34_ut2i6"]
+[ext_resource type="Script" uid="uid://b2j01hs6efoik" path="res://start_game_fade.gd" id="35_0mnfp"]
+[ext_resource type="AudioStream" uid="uid://b2comdf85fh12" path="res://Sounds/applause.wav" id="35_qw2y7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crh0w"]
 size = Vector2(15, 10)
@@ -66,10 +73,7 @@ height = 10.0
 size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cgv8"]
-size = Vector2(20, 9)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_luodc"]
-radius = 11.0
+size = Vector2(29, 25)
 
 [node name="Level" type="Node2D"]
 
@@ -511,16 +515,174 @@ texture = ExtResource("24_u0did")
 script = ExtResource("28_luodc")
 
 [node name="ZoneEnterArea" type="Area2D" parent="PartEnding"]
+position = Vector2(0, 39)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PartEnding/ZoneEnterArea"]
-position = Vector2(0, -23.5)
+position = Vector2(0.5, -23.5)
 shape = SubResource("RectangleShape2D_1cgv8")
 
-[node name="Area2D" type="Area2D" parent="PartEnding"]
-position = Vector2(0, 16)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEnding/Area2D"]
-shape = SubResource("CircleShape2D_luodc")
+[node name="EndGame" type="Control" parent="CanvasLayer"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("30_mleqk")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/EndGame"]
+process_mode = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.133333, 0.113725, 0.32549, 0)
+
+[node name="EndTextLabel" type="Label" parent="CanvasLayer/EndGame"]
+process_mode = 4
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -403.0
+offset_top = -394.0
+offset_right = 467.0
+offset_bottom = 386.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("32_sl4om")
+theme_override_font_sizes/font_size = 48
+text = "Merci a vous deux d'etre venu nous chercher dans les quatres coins du canton dans des etats pas possible (on cherche encore un dossier sur l'enfant prodigue...)
+Bon Anniversaire Dady, on t'aime <3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/EndGame"]
+process_mode = 4
+modulate = Color(1, 1, 1, 0)
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/EndGame/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -423.0
+offset_top = -384.0
+offset_right = -117.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+mouse_filter = 2
+texture = ExtResource("31_6btg4")
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/EndGame/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -401.0
+offset_top = 367.0
+offset_right = -197.0
+offset_bottom = 412.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.639216, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 0.639216, 0, 1)
+theme_override_fonts/font = ExtResource("32_sl4om")
+theme_override_font_sizes/font_size = 36
+text = "Rejouer"
+flat = true
+
+[node name="arrow" type="TextureRect" parent="CanvasLayer/EndGame/Control/RestartButton"]
+layout_mode = 2
+offset_left = -23.0
+offset_top = 14.0
+offset_right = -12.0
+offset_bottom = 32.0
+texture = ExtResource("33_dtg4e")
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/EndGame/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 240.0
+offset_top = 367.0
+offset_right = 499.0
+offset_bottom = 412.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.639216, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 0.639216, 0, 1)
+theme_override_fonts/font = ExtResource("32_sl4om")
+theme_override_font_sizes/font_size = 36
+text = "Menu Principal"
+flat = true
+
+[node name="arrow" type="TextureRect" parent="CanvasLayer/EndGame/Control/MainMenuButton"]
+layout_mode = 2
+offset_left = -23.0
+offset_top = 14.0
+offset_right = -12.0
+offset_bottom = 32.0
+texture = ExtResource("33_dtg4e")
+
+[node name="Label" type="Label" parent="CanvasLayer/EndGame/Control"]
+layout_mode = 0
+offset_left = 807.0
+offset_top = 740.0
+offset_right = 1377.0
+offset_bottom = 789.0
+theme_override_colors/font_color = Color(0.494118, 0.145098, 0.32549, 1)
+theme_override_fonts/font = ExtResource("32_sl4om")
+theme_override_font_sizes/font_size = 48
+text = "$45000"
+horizontal_alignment = 2
+
+[node name="HoverSound" type="AudioStreamPlayer2D" parent="CanvasLayer/EndGame"]
+stream = ExtResource("34_ut2i6")
+volume_db = -15.0
+
+[node name="ApplauseSound" type="AudioStreamPlayer2D" parent="CanvasLayer/EndGame"]
+stream = ExtResource("35_qw2y7")
+
+[node name="StartGame" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("35_0mnfp")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/StartGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneEnterArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
 [connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneExitArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
@@ -541,3 +703,5 @@ shape = SubResource("CircleShape2D_luodc")
 [connection signal="area_entered" from="PartGravity/ZoneEnterArea" to="PartGravity/GravityManager" method="_on_zone_enter_area_entered"]
 [connection signal="area_entered" from="PartGravity/ZoneExitArea" to="PartGravity/GravityManager" method="_on_zone_exit_area_entered"]
 [connection signal="area_entered" from="PartEnding/ZoneEnterArea" to="PartEnding/EndingManager" method="_on_zone_enter_area_entered"]
+[connection signal="button_up" from="CanvasLayer/EndGame/Control/RestartButton" to="CanvasLayer/EndGame" method="_on_restart_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/EndGame/Control/MainMenuButton" to="CanvasLayer/EndGame" method="_on_main_menu_button_button_up"]
