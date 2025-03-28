@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dldcwmwe2e68s"]
+[gd_scene load_steps=55 format=3 uid="uid://dldcwmwe2e68s"]
 
 [ext_resource type="Texture2D" uid="uid://bm6glbku8y7vv" path="res://Sprites/LEVEL.png" id="1_tumq0"]
 [ext_resource type="PackedScene" uid="uid://bm1xyqs8ygm5s" path="res://Scenes/tree.tscn" id="2_k5f4k"]
@@ -12,30 +12,34 @@
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="10_oqgf2"]
 [ext_resource type="PackedScene" uid="uid://bwmkw85qi2ov1" path="res://Scenes/checkpoint.tscn" id="12_u0did"]
 [ext_resource type="PackedScene" uid="uid://b6xexbvafpety" path="res://Scenes/plateforme.tscn" id="13_pa6b8"]
-[ext_resource type="Script" uid="uid://bj33q7hsaqxfa" path="res://Scenes/destroyer.gd" id="13_u0did"]
+[ext_resource type="Script" uid="uid://bj33q7hsaqxfa" path="res://Scripts/destroyer.gd" id="13_u0did"]
 [ext_resource type="PackedScene" uid="uid://uj3ff555h3ge" path="res://Scenes/door.tscn" id="14_53r2q"]
 [ext_resource type="PackedScene" uid="uid://bp887lg0soger" path="res://Scenes/pieton.tscn" id="14_c7le1"]
 [ext_resource type="PackedScene" uid="uid://delyuydsqyaqt" path="res://Scenes/train.tscn" id="14_crh0w"]
-[ext_resource type="Script" uid="uid://jyprx7rn35qj" path="res://Scenes/pieton_spawner.gd" id="15_2klc5"]
-[ext_resource type="Script" uid="uid://dohanfm2iscjn" path="res://Scenes/pieton_waiting_area_manager.gd" id="16_nngtn"]
+[ext_resource type="Script" uid="uid://jyprx7rn35qj" path="res://Scripts/pieton_spawner.gd" id="15_2klc5"]
+[ext_resource type="Script" uid="uid://dohanfm2iscjn" path="res://Scripts/pieton_waiting_area_manager.gd" id="16_nngtn"]
 [ext_resource type="Texture2D" uid="uid://dg81f6hkx0y5" path="res://Sprites/Turnine2.png" id="18_vofx3"]
 [ext_resource type="Texture2D" uid="uid://vea4xtchh2tq" path="res://Sprites/Projectile2.png" id="19_00k4y"]
-[ext_resource type="Script" uid="uid://cgtkij2ebcdho" path="res://Scenes/projectile_movement.gd" id="19_3a44l"]
+[ext_resource type="Script" uid="uid://cgtkij2ebcdho" path="res://Scripts/projectile_movement.gd" id="19_3a44l"]
 [ext_resource type="AudioStream" uid="uid://cjwbyolfkeqf6" path="res://Sounds/crowd_noise.wav" id="19_53r2q"]
 [ext_resource type="PackedScene" uid="uid://b301he6qmjddd" path="res://Scenes/moving_door.tscn" id="19_luodc"]
-[ext_resource type="Script" uid="uid://dgje751gg5ixu" path="res://Scenes/gravity_manager.gd" id="21_0cmrb"]
+[ext_resource type="Script" uid="uid://dgje751gg5ixu" path="res://Scripts/gravity_manager.gd" id="21_0cmrb"]
 [ext_resource type="PackedScene" uid="uid://cvr7dj5uotcm2" path="res://Scenes/mine.tscn" id="22_gf56v"]
 [ext_resource type="Texture2D" uid="uid://f36fla36wys" path="res://Sprites/enfant.png" id="23_6y3s5"]
 [ext_resource type="Texture2D" uid="uid://b2eohafi5d1vn" path="res://Sprites/HELP.png" id="24_u0did"]
 [ext_resource type="PackedScene" uid="uid://b24a3oyjqgh5c" path="res://Scenes/anti_gravité_particules.tscn" id="25_aoqsc"]
-[ext_resource type="Script" uid="uid://n8qgcllf646p" path="res://Scenes/ending_manager.gd" id="28_luodc"]
-[ext_resource type="Script" uid="uid://do3t4wuc5yp2m" path="res://end_game_ui.gd" id="30_mleqk"]
+[ext_resource type="Script" uid="uid://tl7q6tasjt46" path="res://Scenes/secret_door.gd" id="27_csjfj"]
+[ext_resource type="Script" uid="uid://n8qgcllf646p" path="res://Scripts/ending_manager.gd" id="28_luodc"]
+[ext_resource type="Texture2D" uid="uid://d0jydjyh8scub" path="res://Sprites/particules.png" id="28_nkhef"]
+[ext_resource type="AudioStream" uid="uid://d2av7rxtgoc86" path="res://Sounds/door_slam.wav" id="29_nkhef"]
+[ext_resource type="Script" uid="uid://do3t4wuc5yp2m" path="res://Scripts/end_game_ui.gd" id="30_mleqk"]
 [ext_resource type="Texture2D" uid="uid://6kfm10e2r5yr" path="res://Sprites/Lettre.png" id="31_6btg4"]
 [ext_resource type="FontFile" uid="uid://dsvwo8iqoy5g6" path="res://Fonts/PxGrotesk-Screen.otf" id="32_sl4om"]
 [ext_resource type="Texture2D" uid="uid://bjug17do7yw2l" path="res://Sprites/arrow.png" id="33_dtg4e"]
 [ext_resource type="AudioStream" uid="uid://b0c2ewevlw4fn" path="res://Sounds/HoverSound.wav" id="34_ut2i6"]
-[ext_resource type="Script" uid="uid://b2j01hs6efoik" path="res://start_game_fade.gd" id="35_0mnfp"]
+[ext_resource type="Script" uid="uid://b2j01hs6efoik" path="res://Scripts/start_game_fade.gd" id="35_0mnfp"]
 [ext_resource type="AudioStream" uid="uid://b2comdf85fh12" path="res://Sounds/applause.wav" id="35_qw2y7"]
+[ext_resource type="Script" uid="uid://datqw1d7py55e" path="res://Scenes/pause_menu.gd" id="37_bp4cd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crh0w"]
 size = Vector2(15, 10)
@@ -72,6 +76,12 @@ height = 10.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pnhnk"]
 size = Vector2(14, 14)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fmtd1"]
+size = Vector2(12, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o4ln"]
+size = Vector2(11, 4)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1cgv8"]
 size = Vector2(29, 25)
 
@@ -104,7 +114,10 @@ position = Vector2(71, -88)
 position = Vector2(84, -105)
 
 [node name="Tree8" parent="PartOne" instance=ExtResource("2_k5f4k")]
-position = Vector2(105, -91)
+position = Vector2(107, -95)
+
+[node name="Tree9" parent="PartOne" instance=ExtResource("2_k5f4k")]
+position = Vector2(93, -75)
 
 [node name="CharginZoneStart" parent="." instance=ExtResource("3_6phgx")]
 position = Vector2(-201, -95)
@@ -482,23 +495,66 @@ emitting = false
 [node name="PartEleven" type="Node2D" parent="."]
 position = Vector2(119, 42)
 
-[node name="Mine" parent="PartEleven" instance=ExtResource("22_gf56v")]
-position = Vector2(-8, 8)
+[node name="Mines" type="Node" parent="PartEleven"]
 
-[node name="Mine3" parent="PartEleven" instance=ExtResource("22_gf56v")]
-position = Vector2(11, -11)
+[node name="Mine" parent="PartEleven/Mines" instance=ExtResource("22_gf56v")]
+position = Vector2(111, 50)
 
-[node name="Mine4" parent="PartEleven" instance=ExtResource("22_gf56v")]
-position = Vector2(1, 45)
+[node name="Mine3" parent="PartEleven/Mines" instance=ExtResource("22_gf56v")]
+position = Vector2(130, 31)
 
-[node name="Mine5" parent="PartEleven" instance=ExtResource("22_gf56v")]
-position = Vector2(11, 51)
+[node name="Mine4" parent="PartEleven/Mines" instance=ExtResource("22_gf56v")]
+position = Vector2(120, 87)
 
-[node name="Mine7" parent="PartEleven" instance=ExtResource("22_gf56v")]
-position = Vector2(-1, 23)
+[node name="Mine5" parent="PartEleven/Mines" instance=ExtResource("22_gf56v")]
+position = Vector2(130, 93)
 
-[node name="Mine2" parent="PartEleven" instance=ExtResource("22_gf56v")]
-position = Vector2(15, 10)
+[node name="Mine7" parent="PartEleven/Mines" instance=ExtResource("22_gf56v")]
+position = Vector2(118, 65)
+
+[node name="Mine2" parent="PartEleven/Mines" instance=ExtResource("22_gf56v")]
+position = Vector2(134, 52)
+
+[node name="SecretDoor" type="Node2D" parent="PartEleven"]
+
+[node name="DoorView2" type="Control" parent="PartEleven/SecretDoor"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 25.0
+offset_top = -3.0
+offset_right = 37.0
+offset_bottom = 14.0
+
+[node name="SecretDoor" type="Node2D" parent="PartEleven/SecretDoor/DoorView2"]
+position = Vector2(0, 5)
+script = ExtResource("27_csjfj")
+
+[node name="Sprite2D" type="Sprite2D" parent="PartEleven/SecretDoor/DoorView2/SecretDoor"]
+modulate = Color(0.133333, 0.113725, 0.32549, 1)
+position = Vector2(6, 9)
+scale = Vector2(12.5, 3.5)
+texture = ExtResource("28_nkhef")
+
+[node name="Area2D" type="Area2D" parent="PartEleven/SecretDoor/DoorView2/SecretDoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEleven/SecretDoor/DoorView2/SecretDoor/Area2D"]
+position = Vector2(6, 9)
+shape = SubResource("RectangleShape2D_fmtd1")
+
+[node name="PlayerCollision" type="Node" parent="PartEleven/SecretDoor/DoorView2/SecretDoor"]
+script = ExtResource("10_oqgf2")
+metadata/_custom_type_script = "uid://cqoo6850gcfqh"
+
+[node name="DoorSlamSound" type="AudioStreamPlayer2D" parent="PartEleven/SecretDoor/DoorView2/SecretDoor"]
+stream = ExtResource("29_nkhef")
+
+[node name="TriggerArea" type="Area2D" parent="PartEleven/SecretDoor"]
+position = Vector2(25, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PartEleven/SecretDoor/TriggerArea"]
+position = Vector2(5.5, 0)
+shape = SubResource("RectangleShape2D_5o4ln")
 
 [node name="PartEnding" type="Node2D" parent="."]
 position = Vector2(197, 96)
@@ -670,6 +726,7 @@ volume_db = -15.0
 stream = ExtResource("35_qw2y7")
 
 [node name="StartGame" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1920.0
@@ -684,8 +741,86 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("37_bp4cd")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.113725, 0.32549, 0.658824)
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = 88.0
+offset_right = 102.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.639216, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 0.639216, 0, 1)
+theme_override_fonts/font = ExtResource("32_sl4om")
+theme_override_font_sizes/font_size = 36
+text = "Reprendre
+"
+flat = true
+
+[node name="arrow" type="TextureRect" parent="CanvasLayer/PauseMenu/ResumeButton"]
+layout_mode = 2
+offset_left = -23.0
+offset_top = 14.0
+offset_right = -12.0
+offset_bottom = 32.0
+texture = ExtResource("33_dtg4e")
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = 189.0
+offset_right = 130.0
+offset_bottom = 234.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.639216, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 0.639216, 0, 1)
+theme_override_fonts/font = ExtResource("32_sl4om")
+theme_override_font_sizes/font_size = 36
+text = "Menu Principal"
+flat = true
+
+[node name="arrow" type="TextureRect" parent="CanvasLayer/PauseMenu/MainMenuButton"]
+layout_mode = 2
+offset_left = -23.0
+offset_top = 14.0
+offset_right = -12.0
+offset_bottom = 32.0
+texture = ExtResource("33_dtg4e")
+
+[node name="HoverSound" type="AudioStreamPlayer2D" parent="CanvasLayer/PauseMenu"]
+stream = ExtResource("34_ut2i6")
+
 [connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneEnterArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
-[connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneExitArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_entered"]
+[connection signal="area_entered" from="PartTwo/PlayerZoneDetection2/ZoneExitArea" to="PartTwo/Control/Truck" method="_on_zone_enter_area_area_exited"]
 [connection signal="area_entered" from="PartFour/RotatingTurbine/Area2D" to="PartFour/RotatingTurbine/PlayerCollision" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartFive/Destroyer/Area2D" to="PartFive/Destroyer" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartSeven/WaitingArea" to="PartSeven/WaitingArea" method="_on_area_entered"]
@@ -702,6 +837,10 @@ grow_vertical = 2
 [connection signal="area_entered" from="PartTen/Control/Projectile/Area2D" to="PartTen/Control/Projectile/PlayerCollision" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="PartGravity/ZoneEnterArea" to="PartGravity/GravityManager" method="_on_zone_enter_area_entered"]
 [connection signal="area_entered" from="PartGravity/ZoneExitArea" to="PartGravity/GravityManager" method="_on_zone_exit_area_entered"]
+[connection signal="area_entered" from="PartEleven/SecretDoor/DoorView2/SecretDoor/Area2D" to="PartEleven/SecretDoor/DoorView2/SecretDoor/PlayerCollision" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PartEleven/SecretDoor/TriggerArea" to="PartEleven/SecretDoor/DoorView2/SecretDoor" method="_on_trigger_area_area_entered"]
 [connection signal="area_entered" from="PartEnding/ZoneEnterArea" to="PartEnding/EndingManager" method="_on_zone_enter_area_entered"]
 [connection signal="button_up" from="CanvasLayer/EndGame/Control/RestartButton" to="CanvasLayer/EndGame" method="_on_restart_button_button_up"]
 [connection signal="button_up" from="CanvasLayer/EndGame/Control/MainMenuButton" to="CanvasLayer/EndGame" method="_on_main_menu_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/PauseMenu/ResumeButton" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
+[connection signal="button_up" from="CanvasLayer/PauseMenu/MainMenuButton" to="CanvasLayer/PauseMenu" method="_on_mainmenu_pressed"]

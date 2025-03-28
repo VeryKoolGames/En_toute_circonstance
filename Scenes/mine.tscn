@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvr7dj5uotcm2"]
 
-[ext_resource type="Script" uid="uid://d18pnsaiq17ru" path="res://Scenes/mine_manager.gd" id="1_mygvu"]
+[ext_resource type="Script" uid="uid://d18pnsaiq17ru" path="res://Scripts/mine_manager.gd" id="1_mygvu"]
 [ext_resource type="Texture2D" uid="uid://bmb6im1ppcncx" path="res://Sprites/mine.png" id="1_qoe3o"]
 [ext_resource type="Script" uid="uid://cqoo6850gcfqh" path="res://Scripts/kill_player.gd" id="3_o84ae"]
 

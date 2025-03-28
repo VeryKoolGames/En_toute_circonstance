@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://mg7i8p648oal"]
 
-[ext_resource type="PackedScene" uid="uid://dldcwmwe2e68s" path="res://level.tscn" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://dldcwmwe2e68s" path="res://Scenes/level.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://v30fe1sniv4s" path="res://Scenes/player.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://kb0vbs3beqtw" path="res://Scenes/game_ui.tscn" id="3_8gbba"]
 [ext_resource type="AudioStream" uid="uid://cd4bmq7sfj0ng" path="res://Sounds/main_music.wav" id="4_21xkr"]
-[ext_resource type="Script" uid="uid://cq8fvvv5xheuh" path="res://Scenes/main_music.gd" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://cq8fvvv5xheuh" path="res://Scripts/main_music.gd" id="5_kry3j"]
 [ext_resource type="AudioStream" uid="uid://buyl3jrngx1g1" path="res://Sounds/main_music_opener.wav" id="6_6bp64"]
 
 [node name="Main" type="Node2D"]
@@ -30,4 +30,5 @@ script = ExtResource("5_kry3j")
 
 [node name="MainMusicOpener" type="AudioStreamPlayer2D" parent="MainMusic"]
 stream = ExtResource("6_6bp64")
+volume_db = -10.0
 autoplay = true

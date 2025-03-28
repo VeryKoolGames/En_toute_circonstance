@@ -27,4 +27,8 @@ func _on_honk_area_area_entered(area: Area2D) -> void:
 
 func _on_zone_enter_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
-		ambient_sound.playing = not ambient_sound.playing
+		ambient_sound.playing = true
+
+func _on_zone_enter_area_area_exited(area: Area2D) -> void:
+	if area.is_in_group("player"):
+		ambient_sound.playing = false
