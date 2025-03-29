@@ -327,6 +327,7 @@ position = Vector2(9, 8)
 [node name="DoorOne2" parent="PartSeven/DoorView" instance=ExtResource("19_luodc")]
 position = Vector2(9, 32)
 initial_delay = 2.0
+move_towards_left = true
 
 [node name="Area2D" type="Area2D" parent="PartSeven"]
 
