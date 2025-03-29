@@ -24,7 +24,7 @@ texture = ExtResource("2_gyc6o")
 shape = SubResource("RectangleShape2D_v14t0")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.5
 
 [node name="PlayerCollision" type="Node" parent="."]
 script = ExtResource("3_sc7ly")
